@@ -10,7 +10,8 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 import static org.fest.assertions.api.Assertions.fail;
-import static org.fest.assertions.api.JodaTimeAssertions.assertThat;
+import static org.fest.assertions.api.JODA_TIME.assertThat;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 /**
  * @author Paweł Stawicki

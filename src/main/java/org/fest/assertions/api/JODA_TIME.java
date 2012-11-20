@@ -10,7 +10,7 @@ import org.joda.time.LocalDateTime;
  * @author Joel Costigliola
  * @author Paweł Stawicki
  */
-public class JodaTimeAssertions extends Assertions {
+public class JODA_TIME {
 
     public static DateTimeAssert assertThat(DateTime date) {
         return new DateTimeAssert(DateTimeAssert.class, date);

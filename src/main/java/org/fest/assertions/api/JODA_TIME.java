@@ -1,6 +1,5 @@
 package org.fest.assertions.api;
 
-
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
@@ -12,12 +11,12 @@ import org.joda.time.LocalDateTime;
  */
 public class JODA_TIME {
 
-    public static DateTimeAssert assertThat(DateTime date) {
-        return new DateTimeAssert(DateTimeAssert.class, date);
-    }
+  public static DateTimeAssert assertThat(DateTime date) {
+    return new DateTimeAssert(DateTimeAssert.class, date);
+  }
 
-    public static LocalDateTimeAssert assertThat(LocalDateTime localDateTime) {
-        return new LocalDateTimeAssert(LocalDateTimeAssert.class, localDateTime);
-    }
+  public static LocalDateTimeAssert assertThat(LocalDateTime localDateTime) {
+    return new LocalDateTimeAssert(LocalDateTimeAssert.class, localDateTime);
+  }
 
 }

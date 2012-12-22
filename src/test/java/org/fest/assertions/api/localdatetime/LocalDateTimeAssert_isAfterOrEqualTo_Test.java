@@ -5,6 +5,7 @@ import static org.fest.assertions.api.Assertions.fail;
 import static org.fest.assertions.api.JODA_TIME.assertThat;
 import static org.fest.util.FailureMessages.actualIsNull;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
@@ -51,7 +52,14 @@ public class LocalDateTimeAssert_isAfterOrEqualTo_Test extends LocalDateTimeAsse
   @Test
   public void should_fail_if_dateTime_parameter_is_null() {
     expectException(IllegalArgumentException.class, "The LocalDateTime to compare actual with should not be null");
-    assertThat(new LocalDateTime()).isAfterOrEqualTo(null);
+    assertThat(new LocalDateTime()).isAfterOrEqualTo((LocalDateTime) null);
+  }
+
+  @Test
+  public void should_fail_if_dateTime_as_string_parameter_is_null() {
+    expectException(IllegalArgumentException.class,
+        "The String representing the DateTime to compare actual with should not be null");
+    assertThat(new DateTime()).isAfterOrEqualTo((String) null);
   }
 
   private static void verify_that_isAfterOrEqual_assertion_fails_and_throws_AssertionError(LocalDateTime dateToCheck,
@@ -59,8 +67,13 @@ public class LocalDateTimeAssert_isAfterOrEqualTo_Test extends LocalDateTimeAsse
     try {
       assertThat(dateToCheck).isAfterOrEqualTo(reference);
     } catch (AssertionError e) {
-      // AssertionError was expected
-      return;
+      // AssertionError was expected, test same assertion with String based parameter
+      try {
+        assertThat(dateToCheck).isAfterOrEqualTo(reference.toString());
+      } catch (AssertionError e2) {
+        // AssertionError was expected (again)
+        return;
+      }
     }
     fail("Should have thrown AssertionError");
   }

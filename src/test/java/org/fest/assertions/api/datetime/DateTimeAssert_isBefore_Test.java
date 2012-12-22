@@ -24,6 +24,7 @@ public class DateTimeAssert_isBefore_Test extends DateTimeAssertBaseTest {
     testAssumptions(referenceDate, dateBefore, dateAfter);
     // WHEN
     assertThat(dateBefore).isBefore(referenceDate);
+    assertThat(dateBefore).isBefore(referenceDate.toString());
     // THEN
     verify_that_isBefore_assertion_fails_and_throws_AssertionError(referenceDate, referenceDate);
     verify_that_isBefore_assertion_fails_and_throws_AssertionError(dateAfter, referenceDate);
@@ -51,7 +52,14 @@ public class DateTimeAssert_isBefore_Test extends DateTimeAssertBaseTest {
   @Test
   public void should_fail_if_dateTime_parameter_is_null() {
     expectException(IllegalArgumentException.class, "The DateTime to compare actual with should not be null");
-    assertThat(new DateTime()).isBefore(null);
+    assertThat(new DateTime()).isBefore((DateTime) null);
+  }
+
+  @Test
+  public void should_fail_if_dateTime_as_string_parameter_is_null() {
+    expectException(IllegalArgumentException.class,
+        "The String representing the DateTime to compare actual with should not be null");
+    assertThat(new DateTime()).isBefore((String) null);
   }
 
   private static void verify_that_isBefore_assertion_fails_and_throws_AssertionError(DateTime dateToTest,
@@ -59,8 +67,13 @@ public class DateTimeAssert_isBefore_Test extends DateTimeAssertBaseTest {
     try {
       assertThat(dateToTest).isBefore(reference);
     } catch (AssertionError e) {
-      // AssertionError was expected
-      return;
+      // AssertionError was expected, test same assertion with String based parameter
+      try {
+        assertThat(dateToTest).isBefore(reference.toString());
+      } catch (AssertionError e2) {
+        // AssertionError was expected (again)
+        return;
+      }
     }
     fail("Should have thrown AssertionError");
   }

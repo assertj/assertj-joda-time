@@ -4,7 +4,6 @@ import static org.fest.assertions.error.ShouldBeAfter.shouldBeAfter;
 import static org.fest.assertions.error.ShouldBeAfterOrEqualsTo.shouldBeAfterOrEqualsTo;
 import static org.fest.assertions.error.ShouldBeBefore.shouldBeBefore;
 import static org.fest.assertions.error.ShouldBeBeforeOrEqualsTo.shouldBeBeforeOrEqualsTo;
-import static org.fest.util.Objects.areEqual;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -305,20 +304,6 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
       throw new IllegalArgumentException(
           "The String representing the DateTime to compare actual with should not be null");
     }
-  }
-
-  // only use for tests, we can't use equals as is has been defined to throw an UnsupportedOperationException to avoid
-  // using equals insteaf of isEqualTo.
-  static boolean areEquals(DateTimeAssert dateTimeAssert1, DateTimeAssert dateTimeAssert2) {
-    if (dateTimeAssert1 == null) {
-      return dateTimeAssert2 == null;
-    }
-    if (dateTimeAssert2 == null) {
-      // we know that dateTimeAssert1 != null
-      return false;
-    }
-    return areEqual(dateTimeAssert1.actual, dateTimeAssert2.actual)
-        && areEqual(dateTimeAssert1.info, dateTimeAssert2.info);
   }
 
 }

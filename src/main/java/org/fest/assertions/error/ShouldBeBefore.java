@@ -14,11 +14,10 @@
  */
 package org.fest.assertions.error;
 
-import static org.fest.util.Dates.parse;
-
 import java.util.Date;
 
-import org.fest.assertions.internal.*;
+import org.fest.assertions.internal.ComparisonStrategy;
+import org.fest.assertions.internal.StandardComparisonStrategy;
 
 /**
  * Creates an error message indicating that an assertion that verifies that a {@link Date} is before another one failed.
@@ -46,17 +45,6 @@ public class ShouldBeBefore extends BasicErrorMessageFactory {
    */
   public static ErrorMessageFactory shouldBeBefore(Object actual, Object other) {
     return new ShouldBeBefore(actual, other, StandardComparisonStrategy.instance());
-  }
-
-  /**
-   * Creates a new </code>{@link ShouldBeBefore}</code>.
-   * @param actual the actual value in the failed assertion.
-   * @param year the year to compare the actual date's year to.
-   * @return the created {@code ErrorMessageFactory}.
-   */
-  public static ErrorMessageFactory shouldBeBefore(Object actual, int year) {
-    Object januaryTheFirstOfGivenYear = parse(year + "-01-01");
-    return new ShouldBeBefore(actual, januaryTheFirstOfGivenYear, StandardComparisonStrategy.instance());
   }
 
   private ShouldBeBefore(Object actual, Object other, ComparisonStrategy comparisonStrategy) {

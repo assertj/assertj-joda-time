@@ -19,4 +19,8 @@ public class JODA_TIME {
     return new LocalDateTimeAssert(LocalDateTimeAssert.class, localDateTime);
   }
 
+  /** Creates a new </code>{@link JODA_TIME}</code>. */
+  protected JODA_TIME() {
+    // empty
+  }
 }

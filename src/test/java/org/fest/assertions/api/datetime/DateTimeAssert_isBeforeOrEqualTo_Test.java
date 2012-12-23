@@ -5,6 +5,8 @@ import static org.fest.assertions.api.Assertions.fail;
 import static org.fest.assertions.api.JODA_TIME.assertThat;
 import static org.fest.util.FailureMessages.actualIsNull;
 
+import static org.joda.time.DateTimeZone.UTC;
+
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
@@ -34,10 +36,10 @@ public class DateTimeAssert_isBeforeOrEqualTo_Test extends DateTimeAssertBaseTes
   @Test
   public void test_isBeforeOrEqual_assertion_error_message() {
     try {
-      assertThat(new DateTime(2000, 1, 5, 3, 0, 5)).isBeforeOrEqualTo(new DateTime(1998, 1, 1, 3, 3, 3));
+      assertThat(new DateTime(2000, 1, 5, 3, 0, 5, UTC)).isBeforeOrEqualTo(new DateTime(1998, 1, 1, 3, 3, 3, UTC));
     } catch (AssertionError e) {
       assertThat(e).hasMessage(
-          "expected:<2000-01-05T03:00:05.000+01:00> to be before or equals to:<1998-01-01T03:03:03.000+01:00>");
+          "expected:<2000-01-05T03:00:05.000Z> to be before or equals to:<1998-01-01T03:03:03.000Z>");
       return;
     }
     fail("Should have thrown AssertionError");

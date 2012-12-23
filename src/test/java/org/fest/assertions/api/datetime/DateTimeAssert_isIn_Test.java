@@ -4,6 +4,8 @@ import static org.fest.assertions.api.Assertions.assertThat;
 import static org.fest.assertions.api.Assertions.fail;
 import static org.fest.assertions.api.JODA_TIME.assertThat;
 
+import static org.joda.time.DateTimeZone.UTC;
+
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
@@ -29,10 +31,10 @@ public class DateTimeAssert_isIn_Test extends DateTimeAssertBaseTest {
   @Test
   public void test_isIn_assertion_error_message() {
     try {
-      assertThat(new DateTime(2000, 1, 5, 3, 0, 5)).isIn(new DateTime(2012, 1, 1, 3, 3, 3).toString());
+      assertThat(new DateTime(2000, 1, 5, 3, 0, 5, UTC)).isIn(new DateTime(2012, 1, 1, 3, 3, 3, UTC).toString());
     } catch (AssertionError e) {
       assertThat(e).hasMessage(
-          "expecting:\n<2000-01-05T03:00:05.000+01:00>\n to be in:\n<[2012-01-01T03:03:03.000+01:00]>\n");
+          "expecting:\n<2000-01-05T03:00:05.000Z>\n to be in:\n<[2012-01-01T03:03:03.000Z]>\n");
       return;
     }
     fail("Should have thrown AssertionError");

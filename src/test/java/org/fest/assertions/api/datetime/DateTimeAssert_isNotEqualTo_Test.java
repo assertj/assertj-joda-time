@@ -4,6 +4,8 @@ import static org.fest.assertions.api.Assertions.assertThat;
 import static org.fest.assertions.api.Assertions.fail;
 import static org.fest.assertions.api.JODA_TIME.assertThat;
 
+import static org.joda.time.DateTimeZone.UTC;
+
 import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
@@ -29,10 +31,10 @@ public class DateTimeAssert_isNotEqualTo_Test extends DateTimeAssertBaseTest {
   @Test
   public void test_isNotEqualTo_assertion_error_message() {
     try {
-      assertThat(new DateTime(2000, 1, 5, 3, 0, 5)).isNotEqualTo(new DateTime(2000, 1, 5, 3, 0, 5).toString());
+      DateTime date = new DateTime(2000, 1, 5, 3, 0, 5, UTC);
+      assertThat(date).isNotEqualTo(date.toString());
     } catch (AssertionError e) {
-      assertThat(e)
-          .hasMessage("<2000-01-05T03:00:05.000+01:00> should not be equal to:<2000-01-05T03:00:05.000+01:00>");
+      assertThat(e).hasMessage("<2000-01-05T03:00:05.000Z> should not be equal to:<2000-01-05T03:00:05.000Z>");
       return;
     }
     fail("Should have thrown AssertionError");

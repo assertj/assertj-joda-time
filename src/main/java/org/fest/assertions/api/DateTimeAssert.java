@@ -7,6 +7,7 @@ import static org.fest.assertions.error.ShouldBeBeforeOrEqualsTo.shouldBeBeforeO
 import static org.fest.util.Objects.areEqual;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 import org.fest.assertions.internal.Failures;
 import org.fest.assertions.internal.Objects;
@@ -50,6 +51,9 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * follow <a
    * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
    * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * <p>
+   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of actual
+   * {@link DateTime}.
    * 
    * @param dateTimeAsString String representing a {@link DateTime}.
    * @return this assertion object.
@@ -60,7 +64,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert isBefore(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isBefore(new DateTime(dateTimeAsString));
+    return isBefore(new DateTime(dateTimeAsString, actual.getZone()));
   }
 
   /**
@@ -86,6 +90,9 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * must follow <a
    * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
    * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * <p>
+   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of actual
+   * {@link DateTime}.
    * 
    * @param dateTimeAsString String representing a {@link DateTime}.
    * @return this assertion object.
@@ -96,7 +103,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert isBeforeOrEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isBeforeOrEqualTo(new DateTime(dateTimeAsString));
+    return isBeforeOrEqualTo(new DateTime(dateTimeAsString, actual.getZone()));
   }
 
   /**
@@ -122,6 +129,9 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * must follow <a
    * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
    * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * <p>
+   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of actual
+   * {@link DateTime}.
    * 
    * @param dateTimeAsString String representing a {@link DateTime}.
    * @return this assertion object.
@@ -132,7 +142,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert isAfterOrEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isAfterOrEqualTo(new DateTime(dateTimeAsString));
+    return isAfterOrEqualTo(new DateTime(dateTimeAsString, actual.getZone()));
   }
 
   /**
@@ -157,6 +167,9 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Same assertion as {@link #isAfter(DateTime)} but the {@link DateTime} is built from given String, which must follow
    * <a href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
    * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * <p>
+   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of actual
+   * {@link DateTime}.
    * 
    * @param dateTimeAsString String representing a {@link DateTime}.
    * @return this assertion object.
@@ -167,7 +180,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert isAfter(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isAfter(new DateTime(dateTimeAsString));
+    return isAfter(new DateTime(dateTimeAsString, actual.getZone()));
   }
 
   /**
@@ -175,6 +188,9 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * follow <a
    * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
    * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * <p>
+   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of actual
+   * {@link DateTime}.
    * 
    * @param dateTimeAsString String representing a {@link DateTime}.
    * @return this assertion object.
@@ -184,7 +200,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert isEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isEqualTo(new DateTime(dateTimeAsString));
+    return isEqualTo(new DateTime(dateTimeAsString, actual.getZone()));
   }
 
   /**
@@ -192,6 +208,9 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * follow <a
    * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
    * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * <p>
+   * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of actual
+   * {@link DateTime}.
    * 
    * @param dateTimeAsString String representing a {@link DateTime}.
    * @return this assertion object.
@@ -201,7 +220,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert isNotEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isNotEqualTo(new DateTime(dateTimeAsString));
+    return isNotEqualTo(new DateTime(dateTimeAsString, actual.getZone()));
   }
 
   /**
@@ -209,6 +228,9 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * follow <a
    * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
    * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * <p>
+   * Note that the {@link DateTime}s created from the given Strings are built in the {@link DateTimeZone} of actual
+   * {@link DateTime}.
    * 
    * @param dateTimesAsString String array representing {@link DateTime}s.
    * @return this assertion object.
@@ -225,6 +247,9 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Same assertion as {@link #isIn(DateTime)} but the {@link DateTime} is built from given String, which must follow <a
    * href="http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()"
    * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
+   * <p>
+   * Note that the {@link DateTime}s created from the given Strings are built in the {@link DateTimeZone} of actual
+   * {@link DateTime}.
    * 
    * @param dateTimeAsString String representing a {@link DateTime}.
    * @return this assertion object.
@@ -237,10 +262,11 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
     return isNotIn(convertToDateTimeArray(dateTimesAsString));
   }
 
-  private static DateTime[] convertToDateTimeArray(String... dateTimesAsString) {
+  private DateTime[] convertToDateTimeArray(String... dateTimesAsString) {
     DateTime[] dates = new DateTime[dateTimesAsString.length];
     for (int i = 0; i < dateTimesAsString.length; i++) {
-      dates[i] = new DateTime(dateTimesAsString[i]);
+      // building the DateTime in actual's DateTimeZone
+      dates[i] = new DateTime(dateTimesAsString[i], actual.getZone());
     }
     return dates;
   }

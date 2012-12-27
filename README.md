@@ -1,12 +1,12 @@
-Fest assertions for [Joda Time](http://joda-time.sourceforge.net/index.html) library
+Fest assertions for Joda Time library
 ========================================
 
-Provides assertions like FEST Assert for Joda Time, more precisely for [DateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/DateTime.html) and [LocalDateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/LocalDateTime.html) classes, more will come later but that's a start (contributions are welcome to add new assertions !).
+Provides assertions like FEST Assert for [Joda Time](http://joda-time.sourceforge.net/index.html), more precisely for [DateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/DateTime.html) and [LocalDateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/LocalDateTime.html) classes, more will come later but that's a start (contributions are welcome to add new assertions !).
 
 ## Quick start
 
 To start using Joda Time assertions, you just have to statically import `JODA_TIME.assertThat` and use your preferred IDE code completion after `assertThat.` !
- 
+
 Code example 
 
 ```java
@@ -20,6 +20,18 @@ Available assertions are `isBefore`, `isBeforeOrEqualTo`, `isAfter`, `isAfterOrE
 
 You can compare `DateTime` to another `DateTime`, or `LocalDateTime` to `LocalDateTime`, but not `DateTime` to `LocalDateTime`,
 it doesn't make sense because one is timezone dependent and the other one is not.
+
+Fest assertions for Joda Time is available in Maven Central
+
+```xml
+<dependency>
+   <groupId>org.easytesting</groupId>
+   <artifactId>fest-joda-time-assert</artifactId>
+   <version>1.0</version>
+</dependency>
+```
+
+Note that you can find working example in [JodaTimeAssertionsExamples.java](https://github.com/joel-costigliola/fest-examples/blob/master/src/main/java/org/fest/assertions/examples/JodaTimeAssertionsExamples.java) from [fest-examples](https://github.com/joel-costigliola/fest-examples/) project.
 
 ## Tip
 
@@ -46,4 +58,9 @@ assertThat(new DateTime("2000-01-01")).isAfter(new DateTime("1999-12-31"));
 // assertThat comes from org.fest.assertions.api.Assertions.assertThat static import
 assertThat("hello world").startsWith("hello");
 ```
+
+## Release notes history
+
+2012-12-27 : 1.0 release
+
 

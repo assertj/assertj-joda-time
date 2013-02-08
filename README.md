@@ -27,7 +27,7 @@ Fest assertions for Joda Time is available in Maven Central
 <dependency>
    <groupId>org.easytesting</groupId>
    <artifactId>fest-joda-time-assert</artifactId>
-   <version>1.0</version>
+   <version>1.0.1</version>
 </dependency>
 ```
 
@@ -60,6 +60,9 @@ assertThat("hello world").startsWith("hello");
 ```
 
 ## Release notes history
+
+2013-02-08 : 1.0.1 release
+* fixes [github #6](https://github.com/joel-costigliola/fest-joda-time-assert/issues/6)
 
 2012-12-27 : 1.0 release
 

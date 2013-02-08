@@ -3,7 +3,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>fest-joda-time-assert</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2-SNAPSHOT</version>
   <name>FEST Fluent Assertions for Joda Time</name>
   <url>https://github.com/joel-costigliola/fest-joda-time-assert</url>
   

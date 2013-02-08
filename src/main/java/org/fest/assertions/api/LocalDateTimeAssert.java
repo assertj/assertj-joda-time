@@ -1,9 +1,9 @@
 package org.fest.assertions.api;
 
-import static org.fest.assertions.error.ShouldBeAfter.shouldBeAfter;
-import static org.fest.assertions.error.ShouldBeAfterOrEqualsTo.shouldBeAfterOrEqualsTo;
-import static org.fest.assertions.error.ShouldBeBefore.shouldBeBefore;
-import static org.fest.assertions.error.ShouldBeBeforeOrEqualsTo.shouldBeBeforeOrEqualsTo;
+import static org.fest.assertions.jodatime.error.ShouldBeAfter.shouldBeAfter;
+import static org.fest.assertions.jodatime.error.ShouldBeAfterOrEqualsTo.shouldBeAfterOrEqualsTo;
+import static org.fest.assertions.jodatime.error.ShouldBeBefore.shouldBeBefore;
+import static org.fest.assertions.jodatime.error.ShouldBeBeforeOrEqualsTo.shouldBeBeforeOrEqualsTo;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;

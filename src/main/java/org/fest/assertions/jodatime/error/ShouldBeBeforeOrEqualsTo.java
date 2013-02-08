@@ -12,42 +12,45 @@
  * 
  * Copyright @2010-2011 the original author or authors.
  */
-package org.fest.assertions.error;
+package org.fest.assertions.jodatime.error;
 
 import java.util.Date;
 
-import org.fest.assertions.internal.*;
+import org.fest.assertions.error.BasicErrorMessageFactory;
+import org.fest.assertions.error.ErrorMessageFactory;
+import org.fest.assertions.internal.ComparisonStrategy;
+import org.fest.assertions.internal.StandardComparisonStrategy;
 
 /**
- * Creates an error message indicating that an assertion that verifies that a {@link Date} is after or equals to another one
+ * Creates an error message indicating that an assertion that verifies that a {@link Date} is before or equals to another one
  * failed.
  * 
  * @author Joel Costigliola
  */
-public class ShouldBeAfterOrEqualsTo extends BasicErrorMessageFactory {
+public class ShouldBeBeforeOrEqualsTo extends BasicErrorMessageFactory {
 
   /**
-   * Creates a new </code>{@link ShouldBeAfterOrEqualsTo}</code>.
+   * Creates a new </code>{@link ShouldBeBeforeOrEqualsTo}</code>.
    * @param actual the actual value in the failed assertion.
    * @param other the value used in the failed assertion to compare the actual value to.
    * @param comparisonStrategy the {@link ComparisonStrategy} used to evaluate assertion.
    * @return the created {@code ErrorMessageFactory}.
    */
-  public static ErrorMessageFactory shouldBeAfterOrEqualsTo(Object actual, Object other, ComparisonStrategy comparisonStrategy) {
-    return new ShouldBeAfterOrEqualsTo(actual, other, comparisonStrategy);
+  public static ErrorMessageFactory shouldBeBeforeOrEqualsTo(Object actual, Object other, ComparisonStrategy comparisonStrategy) {
+    return new ShouldBeBeforeOrEqualsTo(actual, other, comparisonStrategy);
   }
 
   /**
-   * Creates a new </code>{@link ShouldBeAfterOrEqualsTo}</code>.
+   * Creates a new </code>{@link ShouldBeBeforeOrEqualsTo}</code>.
    * @param actual the actual value in the failed assertion.
    * @param other the value used in the failed assertion to compare the actual value to.
    * @return the created {@code ErrorMessageFactory}.
    */
-  public static ErrorMessageFactory shouldBeAfterOrEqualsTo(Object actual, Object other) {
-    return new ShouldBeAfterOrEqualsTo(actual, other, StandardComparisonStrategy.instance());
+  public static ErrorMessageFactory shouldBeBeforeOrEqualsTo(Object actual, Object other) {
+    return new ShouldBeBeforeOrEqualsTo(actual, other, StandardComparisonStrategy.instance());
   }
 
-  private ShouldBeAfterOrEqualsTo(Object actual, Object other, ComparisonStrategy comparisonStrategy) {
-    super("expected:<%s> to be after or equals to:<%s>%s", actual, other, comparisonStrategy);
+  private ShouldBeBeforeOrEqualsTo(Object actual, Object other, ComparisonStrategy comparisonStrategy) {
+    super("expected:<%s> to be before or equals to:<%s>%s", actual, other, comparisonStrategy);
   }
 }

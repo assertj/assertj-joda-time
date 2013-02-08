@@ -12,10 +12,12 @@
  * 
  * Copyright @2010-2011 the original author or authors.
  */
-package org.fest.assertions.error;
+package org.fest.assertions.jodatime.error;
 
 import java.util.Date;
 
+import org.fest.assertions.error.BasicErrorMessageFactory;
+import org.fest.assertions.error.ErrorMessageFactory;
 import org.fest.assertions.internal.ComparisonStrategy;
 import org.fest.assertions.internal.StandardComparisonStrategy;
 

@@ -9,11 +9,10 @@ import org.fest.assertions.api.DateTimeAssert;
 import org.fest.assertions.api.JodaTimeBaseTest;
 
 /**
- * 
  * Base test class for {@link DateTimeAssert} tests.
  * 
+ * @author Paweł Stawicki
  * @author Joel Costigliola
- * 
  */
 public class DateTimeAssertBaseTest extends JodaTimeBaseTest {
 

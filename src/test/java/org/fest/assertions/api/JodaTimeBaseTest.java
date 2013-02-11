@@ -14,5 +14,9 @@ public class JodaTimeBaseTest {
     thrown.expect(type);
     thrown.expectMessage(message);
   }
+  
+  protected void expectIllegalArgumentException(String message) {
+    expectException(IllegalArgumentException.class, message);
+  }
 
 }

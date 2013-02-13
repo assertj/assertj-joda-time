@@ -3,10 +3,34 @@ Fest assertions for Joda Time library
 
 Provides assertions like FEST Assert for [Joda Time](http://joda-time.sourceforge.net/index.html), more precisely for [DateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/DateTime.html) and [LocalDateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/LocalDateTime.html) classes, more will come later but that's a start (contributions are welcome to add new assertions !).
 
+* [Latest news](#news)
 * [Quick start](#quickstart)
 * [Tips & tricks](#tip)
 * [Using both FEST Core assertions and Joda Time assertions](#core-and-joda-time-assertions)
-* [Release notes](#release-notes)
+
+## <a name="news"/>Latest News
+
+#### 2013-02-12 : 1.1.0 version released
+
+New features :
+* github #5 : DateTime and LocalDateTime equals comparison with a precision level
+
+One can now compare DateTime and LocalDateTime ignoring millisecond to hour fields in comparison, see the examples below :
+
+```java
+// comparing DateTime ignoring milliseconds.
+DateTime dateTime1 = new DateTime(2000, 1, 1, 0, 0, 1, 0, UTC);
+DateTime dateTime2 = new DateTime(2000, 1, 1, 0, 0, 1, 456, UTC);
+assertThat(dateTime1).isEqualToIgnoringMillis(dateTime2); // OK
+
+// comparing DateTime ignoring hours, minutes, seconds and milliseconds.
+DateTime dateTime1 = new DateTime(2000, 1, 1, 23, 59, 59, 999);
+DateTime dateTime2 = new DateTime(2000, 1, 1, 00, 00, 00, 000);
+assertThat(dateTime1).isEqualToIgnoringHours(dateTime2); // OK
+```
+
+See [release-notes.txt](https://raw.github.com/joel-costigliola/fest-joda-time-assert/master/release-notes.txt) for full releases history.
+
 
 ## <a name="quickstart"/>Quick start
 
@@ -74,7 +98,4 @@ assertThat(new DateTime("2000-01-01")).isAfter(new DateTime("1999-12-31"));
 assertThat("hello world").startsWith("hello");
 ```
 
-## <a name="release-notes"/>Release notes history
-
-See [release-notes.txt](https://raw.github.com/joel-costigliola/fest-joda-time-assert/master/release-notes.txt) file.
 

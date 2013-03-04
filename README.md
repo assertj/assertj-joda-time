@@ -1,7 +1,8 @@
 Fest assertions for Joda Time library
 ========================================
 
-Provides assertions like FEST Assert for [Joda Time](http://joda-time.sourceforge.net/index.html), more precisely for [DateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/DateTime.html) and [LocalDateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/LocalDateTime.html) classes, more will come later but that's a start (contributions are welcome to add new assertions !).
+Provides assertions like FEST Assert for [Joda Time](http://joda-time.sourceforge.net/index.html), more precisely for [DateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/DateTime.html) and [LocalDateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/LocalDateTime.html) classes, more will come later but that's a start (contributions are welcome to add new assertions !).  
+IMPORTANT : It requires FEST Assert 2.x so it won't work if you are using FEST Assert 1.x.
 
 * [Latest news](#news)
 * [Quick start](#quickstart)

@@ -2,33 +2,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
 
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>fest-joda-time-assert</artifactId>
-  <version>1.1.1-SNAPSHOT</version>
-  <name>FEST Fluent Assertions for Joda Time</name>
-  <url>https://github.com/joel-costigliola/fest-joda-time-assert</url>
+  <artifactId>assertj-joda-time</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>AssertJ fluent assertions for Joda Time</name>
+  <url>https://github.com/joel-costigliola/assertj-joda-time</url>
   
   <parent>
-    <groupId>org.easytesting</groupId>
-    <artifactId>fest</artifactId>
-    <version>1.0.15</version>
+    <groupId>org.assertj</groupId>
+    <artifactId>assertj-parent-pom</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
   
   <scm>
-    <developerConnection>scm:git:git@github.com:joel-costigliola/fest-joda-time-assert.git</developerConnection>
-    <connection>scm:git:git://github.com/joel-costigliola/fest-joda-time-assert.git</connection>
-    <url>https://github.com/joel-costigliola/fest-joda-time-assert</url>
+    <developerConnection>scm:git:git@github.com:joel-costigliola/assertj-joda-time.git</developerConnection>
+    <connection>scm:git:git://github.com/joel-costigliola/assertj-joda-time.git</connection>
+    <url>https://github.com/joel-costigliola/assertj-joda-time</url>
   </scm>
   
   <issueManagement>
     <system>github</system>
-    <url>https://github.com/joel-costigliola/fest-joda-time-assert/issues</url>
+    <url>https://github.com/joel-costigliola/assertj-joda-time/issues</url>
   </issueManagement>
   
   <dependencies>
     <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-assert-core</artifactId>
-      <version>2.0M9</version>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>1.0.0M1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>joda-time</groupId>
@@ -36,12 +36,6 @@
       <version>2.1</version>
     </dependency>
     <!-- test dependencies -->
-    <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-test</artifactId>
-      <version>2.1.0</version>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

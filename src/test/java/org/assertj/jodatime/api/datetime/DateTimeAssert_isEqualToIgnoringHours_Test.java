@@ -28,12 +28,12 @@ public class DateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest
   private final DateTime refDatetime = new DateTime(2000, 1, 2, 0, 0, 0, 0, UTC);
 
   @Test
-  public void should_pass_if_actual_is_equal_to_other_ignoring_hour_fields() {
+  public void should_pass_if_actual_is_equal_to_other_ignoring_hours() {
     assertThat(refDatetime).isEqualToIgnoringHours(refDatetime.plusHours(1));
   }
 
   @Test
-  public void should_fail_if_actual_is_not_equal_to_given_datetime_with_hour_ignored() {
+  public void should_fail_if_actual_is_not_equal_to_given_datetime_with_hours_ignored() {
     try {
       assertThat(refDatetime).isEqualToIgnoringHours(refDatetime.minusHours(1));
     } catch (AssertionError e) {

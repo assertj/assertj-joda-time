@@ -8,6 +8,7 @@ IMPORTANT : It requires AssertJ core.
 * [Quick start](#quickstart)
 * [Tips & tricks](#tip)
 * [Using both AssertJ Core assertions and Joda Time assertions](#core-and-joda-time-assertions)
+* [Contributing](#contributing)
 
 ## <a name="news"/>Latest News
 
@@ -79,5 +80,9 @@ assertThat(new DateTime("2000-01-01")).isAfter(new DateTime("1999-12-31"));
 // assertThat comes from org.assertj.core.api.Assertions.assertThat static import
 assertThat("hello world").startsWith("hello");
 ```
+
+## <a name="contributing"/>Contributing
+
+Thanks for your interest, check our [contributor's guidelines](CONTRIBUTING.md)
 
 

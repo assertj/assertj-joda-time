@@ -14,7 +14,7 @@ package org.assertj.jodatime.api.localdatetime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.assertj.jodatime.api.JODA_TIME.assertThat;
+import static org.assertj.jodatime.api.Assertions.assertThat;
 
 import org.joda.time.LocalDateTime;
 import org.junit.Test;

@@ -14,7 +14,7 @@ package org.assertj.jodatime.api.localdatetime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
-import static org.assertj.jodatime.api.JODA_TIME.assertThat;
+import static org.assertj.jodatime.api.Assertions.assertThat;
 import static org.assertj.jodatime.api.LocalDateTimeAssert.NULL_LOCAL_DATE_TIME_PARAMETER_MESSAGE;
 
 import org.assertj.jodatime.api.JodaTimeBaseTest;

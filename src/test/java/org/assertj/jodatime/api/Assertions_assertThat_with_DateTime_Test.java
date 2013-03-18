@@ -19,22 +19,22 @@ import org.joda.time.DateTime;
 import org.junit.Test;
 
 /**
- * Tests for <code>{@link JODA_TIME#assertThat(DateTime)}</code>.
+ * Tests for <code>{@link Assertions#assertThat(DateTime)}</code>.
  * 
  * @author Joel Costigliola
  */
-public class JODA_TIME_assertThat_with_DateTime_Test {
+public class Assertions_assertThat_with_DateTime_Test {
 
   @Test
   public void should_create_Assert() {
-    DateTimeAssert assertions = JODA_TIME.assertThat(new DateTime());
+    DateTimeAssert assertions = Assertions.assertThat(new DateTime());
     assertNotNull(assertions);
   }
 
   @Test
   public void should_pass_actual() {
     DateTime dateTime = new DateTime();
-    DateTimeAssert assertions = JODA_TIME.assertThat(dateTime);
+    DateTimeAssert assertions = Assertions.assertThat(dateTime);
     assertSame(dateTime, assertions.getActual());
   }
 }

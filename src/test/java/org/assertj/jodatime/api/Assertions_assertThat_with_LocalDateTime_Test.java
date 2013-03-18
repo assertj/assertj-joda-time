@@ -12,27 +12,30 @@
  */
 package org.assertj.jodatime.api;
 
-import org.joda.time.DateTime;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+
 import org.joda.time.LocalDateTime;
+import org.junit.Test;
 
 /**
- * The entry point for all Joda Time assertions.
+ * Tests for <code>{@link Assertions#assertThat(LocalDateTime)}</code>.
  * 
  * @author Joel Costigliola
- * @author Paweł Stawicki
  */
-public class JODA_TIME {
+public class Assertions_assertThat_with_LocalDateTime_Test {
 
-  public static DateTimeAssert assertThat(DateTime date) {
-    return new DateTimeAssert(DateTimeAssert.class, date);
+  @Test
+  public void should_create_Assert() {
+    LocalDateTimeAssert assertions = Assertions.assertThat(new LocalDateTime());
+    assertNotNull(assertions);
   }
 
-  public static LocalDateTimeAssert assertThat(LocalDateTime localDateTime) {
-    return new LocalDateTimeAssert(LocalDateTimeAssert.class, localDateTime);
-  }
-
-  /** Creates a new </code>{@link JODA_TIME}</code>. */
-  protected JODA_TIME() {
-    // empty
+  @Test
+  public void should_pass_actual() {
+    LocalDateTime localDateTime = new LocalDateTime();
+    LocalDateTimeAssert assertions = Assertions.assertThat(localDateTime);
+    assertSame(localDateTime, assertions.getActual());
   }
 }

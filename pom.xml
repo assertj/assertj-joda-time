@@ -3,7 +3,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>assertj-joda-time</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>AssertJ fluent assertions for Joda Time</name>
   <url>https://github.com/joel-costigliola/assertj-joda-time</url>
   

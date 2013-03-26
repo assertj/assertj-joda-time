@@ -12,7 +12,20 @@ Provides assertions like AssertJ for [Joda Time](http://joda-time.sourceforge.ne
 
 ## <a name="quickstart"/>Quick start
 
-To start using Joda Time assertions, you just have to statically import `Assertions.assertThat` and use your preferred IDE code completion after `assertThat.` !
+To start using Joda Time assertions :
+
+1 - Add this dependency snippet to your project
+
+```xml
+ <dependency>
+   <groupId>org.assertj</groupId>
+   <artifactId>assertj-joda-time</artifactId>
+   <version>1.0.0</version>
+   <scope>test</scope>
+ </dependency>
+```
+
+2 - statically import `Assertions.assertThat` and use your preferred IDE code completion after `assertThat.` !
 
 Some examples  
 
@@ -38,27 +51,18 @@ Available assertions are `isBefore`, `isBeforeOrEqualTo`, `isAfter`, `isAfterOrE
 You can compare `DateTime` to another `DateTime`, or `LocalDateTime` to `LocalDateTime`, but not `DateTime` to `LocalDateTime`,
 it doesn't make sense because one is timezone dependent and the other one is not.
 
-AssertJ assertions for Joda Time is available in Maven Central or will be soon.
-
-```xml
-<dependency>
-   <groupId>org.assertj</groupId>
-   <artifactId>assertj-joda-time</artifactId>
-   <version>1.0.0</version>
-</dependency>
-```
-
 Note that you can find working examples in [JodaTimeAssertionsExamples.java](https://github.com/joel-costigliola/assertj-examples/blob/master/src/test/java/org/assertj/examples/JodaTimeAssertionsExamples.java) from [assertj-examples](https://github.com/joel-costigliola/assertj-examples/) project.
 
 ## <a name="news"/>Latest News
+
+**2013-03-26 : 1.0.0 release : the first release after Fest fork.**
+
+## <a name="migrating-from-fest"/>Migrating from Fest Joda Time assertions
 
 AssertJ Assertions for Joda Time is a fork form FEST Joda Time assertions and is part of AssertJ assertions portfolio.
 The main reason for this fork is that FEST will only provide a small core of assertions in the future whereas I felt on the contrary that it should have provided more assertions.  
 Another reason is that AssertJ projects are also more opened to community contributions than FEST ones.
 
-See [release-notes.txt](release-notes.txt) for releases history.
-
-## <a name="migrating-from-fest"/>Migrating from Fest Joda Time assertions
 
 Migrating from Fest Joda Time to AssertJ Joda Time Assertions is super easy, you only have to change your static import.  
 

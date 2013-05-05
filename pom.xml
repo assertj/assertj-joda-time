@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.assertj</groupId>
     <artifactId>assertj-parent-pom</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
   </parent>
   
   <scm>
@@ -43,7 +43,7 @@
     </dependency>
   </dependencies>
   
-    <build>
+  <build>
     <plugins>
       <plugin>
         <groupId>com.mycila.maven-license-plugin</groupId>
@@ -70,6 +70,18 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <!-- generate jacoco report -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+      <!-- to get jacoco report we need to set argLine in surefire, without this snippet the jacoco argLine is lost -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>${argLine}</argLine>
+        </configuration>
       </plugin>
     </plugins>
   </build>

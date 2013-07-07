@@ -46,7 +46,7 @@ public class LocalDateTimeAssert_isNotIn_Test extends LocalDateTimeAssertBaseTes
     } catch (AssertionError e) {
       assertThat(e)
           .hasMessage(
-              "expecting:\n<2000-01-05T03:00:05.000>\n not to be in:\n<[2000-01-05T03:00:05.000, 2012-01-01T03:03:03.000]>\n");
+              "\nExpecting:\n <2000-01-05T03:00:05.000>\nnot to be in:\n <[2000-01-05T03:00:05.000, 2012-01-01T03:03:03.000]>\n");
       return;
     }
     fail("Should have thrown AssertionError");

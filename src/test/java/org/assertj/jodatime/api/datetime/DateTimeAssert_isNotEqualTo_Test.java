@@ -45,7 +45,7 @@ public class DateTimeAssert_isNotEqualTo_Test extends DateTimeAssertBaseTest {
       DateTime date = new DateTime(2000, 1, 5, 3, 0, 5, UTC);
       assertThat(date).isNotEqualTo(date.toString());
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("<2000-01-05T03:00:05.000Z> should not be equal to:<2000-01-05T03:00:05.000Z>");
+      assertThat(e).hasMessage("\nExpecting:\n <2000-01-05T03:00:05.000Z>\nnot to be equal to:\n <2000-01-05T03:00:05.000Z>\n");
       return;
     }
     fail("Should have thrown AssertionError");

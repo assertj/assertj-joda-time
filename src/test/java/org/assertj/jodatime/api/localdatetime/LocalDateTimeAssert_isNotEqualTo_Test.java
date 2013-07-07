@@ -44,7 +44,7 @@ public class LocalDateTimeAssert_isNotEqualTo_Test extends LocalDateTimeAssertBa
       assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5))
           .isNotEqualTo(new LocalDateTime(2000, 1, 5, 3, 0, 5).toString());
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("<2000-01-05T03:00:05.000> should not be equal to:<2000-01-05T03:00:05.000>");
+      assertThat(e).hasMessage("\nExpecting:\n <2000-01-05T03:00:05.000>\nnot to be equal to:\n <2000-01-05T03:00:05.000>\n");
       return;
     }
     fail("Should have thrown AssertionError");

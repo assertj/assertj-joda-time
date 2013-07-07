@@ -16,9 +16,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
+
 import static org.joda.time.DateTimeZone.UTC;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -41,6 +43,23 @@ public class DateTimeAssert_isBefore_Test extends DateTimeAssertBaseTest {
     // THEN
     verify_that_isBefore_assertion_fails_and_throws_AssertionError(referenceDate, referenceDate);
     verify_that_isBefore_assertion_fails_and_throws_AssertionError(dateAfter, referenceDate);
+  }
+
+  @Test
+  public void isBefore_should_compare_datetimes_in_actual_timezone() {
+    DateTime utcDateTime = new DateTime(2013, 6, 10, 0, 0, DateTimeZone.UTC);
+    DateTimeZone cestTimeZone = DateTimeZone.forID("Europe/Berlin");
+    DateTime cestDateTime2 = new DateTime(2013, 6, 10, 3, 0, cestTimeZone);
+    //  utcDateTime < cestDateTime2  
+    assertThat(utcDateTime).as("in UTC time zone").isBefore(cestDateTime2);
+    // utcDateTime = cestDateTime1
+    try {
+      DateTime cestDateTime1 = new DateTime(2013, 6, 10, 2, 0, cestTimeZone);
+      assertThat(utcDateTime).as("in UTC time zone").isBefore(cestDateTime1);
+    } catch (AssertionError e) {
+      return;
+    }
+    fail("Should have thrown AssertionError");
   }
 
   @Test

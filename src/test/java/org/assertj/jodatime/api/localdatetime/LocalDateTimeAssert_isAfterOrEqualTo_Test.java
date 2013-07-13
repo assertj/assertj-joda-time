@@ -48,7 +48,7 @@ public class LocalDateTimeAssert_isAfterOrEqualTo_Test extends LocalDateTimeAsse
     try {
       assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5)).isAfterOrEqualTo(new LocalDateTime(2012, 1, 1, 3, 3, 3));
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("expected:<2000-01-05T03:00:05.000> to be after or equals to:<2012-01-01T03:03:03.000>");
+      assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:05.000>\nto be after or equals to:\n  <2012-01-01T03:03:03.000>\n");
       return;
     }
     fail("Should have thrown AssertionError");

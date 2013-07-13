@@ -67,7 +67,7 @@ public class DateTimeAssert_isBefore_Test extends DateTimeAssertBaseTest {
     try {
       assertThat(new DateTime(2000, 1, 5, 3, 0, UTC)).isBefore(new DateTime(1998, 1, 1, 3, 3, UTC));
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("expected:<2000-01-05T03:00:00.000Z> to be strictly before:<1998-01-01T03:03:00.000Z>");
+      assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:00.000Z>\nto be strictly before:\n  <1998-01-01T03:03:00.000Z>\n");
       return;
     }
     fail("Should have thrown AssertionError");

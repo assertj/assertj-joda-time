@@ -276,7 +276,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
     return isNotIn(convertToLocalDateTimeArray(dateTimesAsString));
   }
 
-  private static LocalDateTime[] convertToLocalDateTimeArray(String... dateTimesAsString) {
+  private static Object[] convertToLocalDateTimeArray(String... dateTimesAsString) {
     LocalDateTime[] dates = new LocalDateTime[dateTimesAsString.length];
     for (int i = 0; i < dateTimesAsString.length; i++) {
       dates[i] = new LocalDateTime(dateTimesAsString[i]);

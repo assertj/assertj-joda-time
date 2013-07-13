@@ -48,6 +48,6 @@ public class ShouldBeAfter extends BasicErrorMessageFactory {
   }
 
   private ShouldBeAfter(Object actual, Object other, ComparisonStrategy comparisonStrategy) {
-    super("expected:<%s> to be strictly after:<%s>%s", actual, other, comparisonStrategy);
+    super("\nExpecting:\n  <%s>\nto be strictly after:\n  <%s>\n%s", actual, other, comparisonStrategy);
   }
 }

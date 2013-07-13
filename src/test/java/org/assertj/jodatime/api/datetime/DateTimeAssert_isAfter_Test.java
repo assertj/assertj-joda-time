@@ -1,13 +1,13 @@
 /**
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- *
+ * 
  * Copyright 2012-2013 the original author or authors.
  */
 package org.assertj.jodatime.api.datetime;
@@ -50,7 +50,7 @@ public class DateTimeAssert_isAfter_Test extends DateTimeAssertBaseTest {
     DateTime utcDateTime = new DateTime(2013, 6, 10, 0, 0, DateTimeZone.UTC);
     DateTimeZone cestTimeZone = DateTimeZone.forID("Europe/Berlin");
     DateTime cestDateTime = new DateTime(2013, 6, 10, 1, 0, cestTimeZone);
-    //  utcDateTime > cestDateTime  
+    // utcDateTime > cestDateTime
     assertThat(utcDateTime).as("in UTC time zone").isAfter(cestDateTime);
     try {
       DateTime equalsCestDateTime = new DateTime(2013, 6, 10, 2, 0, cestTimeZone);
@@ -66,7 +66,7 @@ public class DateTimeAssert_isAfter_Test extends DateTimeAssertBaseTest {
     try {
       assertThat(new DateTime(2000, 1, 5, 3, 0, 5, UTC)).isAfter(new DateTime(2012, 1, 1, 3, 3, 3, UTC));
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("expected:<2000-01-05T03:00:05.000Z> to be strictly after:<2012-01-01T03:03:03.000Z>");
+      assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:05.000Z>\nto be strictly after:\n  <2012-01-01T03:03:03.000Z>\n");
       return;
     }
     fail("Should have thrown AssertionError");
@@ -88,7 +88,7 @@ public class DateTimeAssert_isAfter_Test extends DateTimeAssertBaseTest {
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
+                    "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isAfter((String) null);
   }
 

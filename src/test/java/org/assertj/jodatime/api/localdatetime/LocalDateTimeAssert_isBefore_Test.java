@@ -47,7 +47,7 @@ public class LocalDateTimeAssert_isBefore_Test extends LocalDateTimeAssertBaseTe
     try {
       assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5)).isBefore(new LocalDateTime(1998, 1, 1, 3, 3, 3));
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("expected:<2000-01-05T03:00:05.000> to be strictly before:<1998-01-01T03:03:03.000>");
+      assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:05.000>\nto be strictly before:\n  <1998-01-01T03:03:03.000>\n");
       return;
     }
     fail("Should have thrown AssertionError");

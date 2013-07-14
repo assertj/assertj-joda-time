@@ -63,6 +63,7 @@ Note that you can find working examples in [JodaTimeAssertionsExamples.java](htt
  
 **2013-07-14 : 1.1.0 release :**
 * In `DateTime` assertions, comparison is performed in `DateTime`'s `DateTimeZone`
+* assertj-joda-time does not impose joda-time 2.2 version anymore, it is compatible with any 2.0+ version.
 * Multiline error message improvements to ease see what wad wrong.
 * Javadoc improvements : fix inconsistent documenation and add more code examples.
 

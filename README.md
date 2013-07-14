@@ -20,14 +20,14 @@ To start using Joda Time assertions :
  <dependency>
    <groupId>org.assertj</groupId>
    <artifactId>assertj-joda-time</artifactId>
-   <version>1.0.0</version>
+   <version>1.1.0</version>
    <scope>test</scope>
  </dependency>
 ```
 
 2 - statically import `Assertions.assertThat` and use your preferred IDE code completion after `assertThat.` !
 
-Some examples  
+Some examples : 
 
 ```java
 import static org.assertj.jodatime.api.Assertions.assertThat;
@@ -43,17 +43,28 @@ dateTime1 = new DateTime(2000, 1, 1, 23, 50, 0, 0, UTC);
 dateTime2 = new DateTime(2000, 1, 1, 23, 50, 10, 456, UTC);
 // ignore seconds and milliseconds in comparison
 assertThat(dateTime1).isEqualToIgnoringSeconds(dateTime2);
+```
 
+For `DateTime` assertions, comparison is performed in `DateTime`'s `DateTimeZone` thus the following assertion passes : 
+
+```java
+DateTime utcTime = new DateTime(2013, 6, 10, 0, 0, DateTimeZone.UTC);
+DateTime cestTime = new DateTime(2013, 6, 10, 2, 0, DateTimeZone.forID("Europe/Berlin"));
+assertThat(utcTime).as("in UTC time").isEqualTo(cestTime);
 ```
 
 Available assertions are `isBefore`, `isBeforeOrEqualTo`, `isAfter`, `isAfterOrEqualTo` (base assertions like `isEqualTo` or `isIn` are of course available).
 
-You can compare `DateTime` to another `DateTime`, or `LocalDateTime` to `LocalDateTime`, but not `DateTime` to `LocalDateTime`,
-it doesn't make sense because one is timezone dependent and the other one is not.
+You can compare `DateTime` to another `DateTime`, or `LocalDateTime` to `LocalDateTime`, but not `DateTime` to `LocalDateTime`, it doesn't make sense as one is timezone dependent and the other one is not.
 
 Note that you can find working examples in [JodaTimeAssertionsExamples.java](https://github.com/joel-costigliola/assertj-examples/blob/master/src/test/java/org/assertj/examples/JodaTimeAssertionsExamples.java) from [assertj-examples](https://github.com/joel-costigliola/assertj-examples/) project.
 
 ## <a name="news"/>Latest News
+ 
+**2013-07-14 : 1.1.0 release :**
+* In `DateTime` assertions, comparison is performed in `DateTime`'s `DateTimeZone`
+* Multiline error message improvements to ease see what wad wrong.
+* Javadoc improvements : fix inconsistent documenation and add more code examples.
 
 **2013-03-26 : 1.0.0 release : the first release after Fest fork.**
 

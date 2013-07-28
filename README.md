@@ -1,10 +1,11 @@
 AssertJ assertions for Joda Time library
 ========================================
 
-Provides assertions like AssertJ for [Joda Time](http://joda-time.sourceforge.net/index.html), more precisely for [DateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/DateTime.html) and [LocalDateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/LocalDateTime.html) classes, more will come later but that's a start (contributions are welcome to add new assertions !).  
+Provides assertions like AssertJ for [Joda Time](http://joda-time.sourceforge.net/index.html), more precisely for [DateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/DateTime.html) and [LocalDateTime](http://joda-time.sourceforge.net/api-release/org/joda/time/LocalDateTime.html) classes, more will come later but that's a start (contributions are welcome to add new assertions !).
 
 * [Quick start](#quickstart)
 * [Latest news](#news)
+* [Javadoc](#javadoc)
 * [Migrating from Fest Joda Time assertions](#migrating-from-fest)
 * [Tips & tricks](#tip)
 * [Using both AssertJ Core assertions and Joda Time assertions](#core-and-joda-time-assertions)
@@ -68,6 +69,10 @@ Note that you can find working examples in [JodaTimeAssertionsExamples.java](htt
 * Javadoc improvements : fix inconsistent documenation and add more code examples.
 
 **2013-03-26 : 1.0.0 release : the first release after Fest fork.**
+
+## <a name="javadoc"/>Javadoc of latest release
+
+Latest javadoc release : [**AssertJ Joda Time javadoc**](http://joel-costigliola.github.io/assertj/jodatime/api/index.html).
 
 ## <a name="migrating-from-fest"/>Migrating from Fest Joda Time assertions
 

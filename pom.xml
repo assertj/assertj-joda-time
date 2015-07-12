@@ -3,14 +3,14 @@
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>assertj-joda-time</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
+  <version>2.0.0-SNAPSHOT</version>
   <name>AssertJ fluent assertions for Joda Time</name>
   <url>https://github.com/joel-costigliola/assertj-joda-time</url>
   
   <parent>
     <groupId>org.assertj</groupId>
     <artifactId>assertj-parent-pom</artifactId>
-    <version>1.2.2</version>
+    <version>1.3.6</version>
   </parent>
   
   <scm>
@@ -48,20 +48,20 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>com.mycila.maven-license-plugin</groupId>
-        <artifactId>maven-license-plugin</artifactId>
-        <version>1.9.0</version>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>2.6</version>
         <configuration>
           <!-- Template location -->
           <header>licence-header.txt</header>
           <properties>
             <!-- Values to be substituted in template -->
             <inceptionYear>2012</inceptionYear>
-            <currentYear>2013</currentYear>
+            <currentYear>2015</currentYear>
           </properties>
           <strictCheck>true</strictCheck>
           <includes>
-            <include>src/**</include>
+            <include>src/**/*.java</include>
           </includes>
         </configuration>
         <executions>
@@ -83,6 +83,25 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <argLine>${argLine}</argLine>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.3</version>
+        <configuration>
+          <!-- (1) CSS file location -->
+          <stylesheetfile>src/main/javadoc/assertj-javadoc.css</stylesheetfile>
+          <!-- (2) Highlight Javascript file -->
+          <top><![CDATA[
+            <script src="http://cdn.jsdelivr.net/highlight.js/8.6/highlight.min.js"></script>
+          ]]></top>
+          <!-- init Highlight -->
+          <footer><![CDATA[
+            <script type="text/javascript">
+              hljs.initHighlightingOnLoad();
+            </script>
+          ]]></footer>
         </configuration>
       </plugin>
     </plugins>

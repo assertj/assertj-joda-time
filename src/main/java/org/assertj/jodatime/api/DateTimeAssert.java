@@ -601,7 +601,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   private static void assertDateTimeAsStringParameterIsNotNull(String dateTimeAsString) {
     if (dateTimeAsString == null) {
       throw new IllegalArgumentException(
-                                         "The String representing the DateTime to compare actual with should not be null");
+          "The String representing the DateTime to compare actual with should not be null");
     }
   }
 

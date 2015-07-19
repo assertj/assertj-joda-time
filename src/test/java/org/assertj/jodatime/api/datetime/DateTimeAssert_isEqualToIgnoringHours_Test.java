@@ -12,16 +12,15 @@
  */
 package org.assertj.jodatime.api.datetime;
 
+import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.DateTimeAssert.NULL_DATE_TIME_PARAMETER_MESSAGE;
 import static org.assertj.jodatime.api.Assertions.assertThat;
-
 import static org.joda.time.DateTimeZone.UTC;
 
 import org.assertj.jodatime.api.JodaTimeBaseTest;
-
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Test;
@@ -59,8 +58,8 @@ public class DateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest
       assertThat(refDatetime).isEqualToIgnoringHours(refDatetime.minusHours(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
-          .isEqualTo(
-              "\nExpecting:\n  <2000-01-02T00:00:00.000Z>\nto have same year, month and day as:\n  <2000-01-01T23:00:00.000Z>\nbut had not.");
+          .isEqualTo(format(
+              "%nExpecting:%n  <2000-01-02T00:00:00.000Z>%nto have same year, month and day as:%n  <2000-01-01T23:00:00.000Z>%nbut had not."));
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();
@@ -72,8 +71,8 @@ public class DateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest
       assertThat(refDatetime).isEqualToIgnoringHours(refDatetime.minusMillis(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
-          .isEqualTo(
-              "\nExpecting:\n  <2000-01-02T00:00:00.000Z>\nto have same year, month and day as:\n  <2000-01-01T23:59:59.999Z>\nbut had not.");
+          .isEqualTo(format(
+              "%nExpecting:%n  <2000-01-02T00:00:00.000Z>%nto have same year, month and day as:%n  <2000-01-01T23:59:59.999Z>%nbut had not."));
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();

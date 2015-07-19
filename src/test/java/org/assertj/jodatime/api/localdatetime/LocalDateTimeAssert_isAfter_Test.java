@@ -12,6 +12,7 @@
  */
 package org.assertj.jodatime.api.localdatetime;
 
+import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
@@ -49,7 +50,7 @@ public class LocalDateTimeAssert_isAfter_Test extends LocalDateTimeAssertBaseTes
     try {
       assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5)).isAfter(new LocalDateTime(2012, 1, 1, 3, 3, 3));
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:05.000>\nto be strictly after:\n  <2012-01-01T03:03:03.000>\n");
+      assertThat(e).hasMessage(format("%nExpecting:%n  <2000-01-05T03:00:05.000>%nto be strictly after:%n  <2012-01-01T03:03:03.000>%n"));
       return;
     }
     fail("Should have thrown AssertionError");

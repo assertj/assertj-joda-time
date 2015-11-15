@@ -12,6 +12,7 @@
  */
 package org.assertj.jodatime.api.datetime;
 
+import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
@@ -45,9 +46,9 @@ public class DateTimeAssert_isNotIn_errors_Test extends DateTimeAssertBaseTest {
       assertThat(new DateTime(2000, 1, 5, 3, 0, 5, UTC)).isNotIn(new DateTime(2000, 1, 5, 3, 0, 5, UTC).toString(),
           new DateTime(2012, 1, 1, 3, 3, 3, UTC).toString());
     } catch (AssertionError e) {
-      assertThat(e).hasMessage(
-          "\nExpecting:\n <2000-01-05T03:00:05.000Z>\nnot to be in:\n"
-              + " <[2000-01-05T03:00:05.000Z, 2012-01-01T03:03:03.000Z]>\n");
+      assertThat(e).hasMessage(format(
+          "%nExpecting:%n <2000-01-05T03:00:05.000Z>%nnot to be in:%n"
+              + " <[2000-01-05T03:00:05.000Z, 2012-01-01T03:03:03.000Z]>%n"));
       return;
     }
     fail("Should have thrown AssertionError");

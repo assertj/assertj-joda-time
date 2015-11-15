@@ -12,11 +12,11 @@
  */
 package org.assertj.jodatime.api.datetime;
 
+import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
-
 import static org.joda.time.DateTimeZone.UTC;
 
 import org.joda.time.DateTime;
@@ -67,7 +67,7 @@ public class DateTimeAssert_isBefore_Test extends DateTimeAssertBaseTest {
     try {
       assertThat(new DateTime(2000, 1, 5, 3, 0, UTC)).isBefore(new DateTime(1998, 1, 1, 3, 3, UTC));
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:00.000Z>\nto be strictly before:\n  <1998-01-01T03:03:00.000Z>\n");
+      assertThat(e).hasMessage(format("%nExpecting:%n  <2000-01-05T03:00:00.000Z>%nto be strictly before:%n  <1998-01-01T03:03:00.000Z>%n"));
       return;
     }
     fail("Should have thrown AssertionError");

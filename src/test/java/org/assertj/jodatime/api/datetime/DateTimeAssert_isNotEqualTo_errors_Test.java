@@ -12,6 +12,7 @@
  */
 package org.assertj.jodatime.api.datetime;
 
+import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
@@ -45,7 +46,7 @@ public class DateTimeAssert_isNotEqualTo_errors_Test extends DateTimeAssertBaseT
       DateTime date = new DateTime(2000, 1, 5, 3, 0, 5, UTC);
       assertThat(date).isNotEqualTo(date.toString());
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("\nExpecting:\n <2000-01-05T03:00:05.000Z>\nnot to be equal to:\n <2000-01-05T03:00:05.000Z>\n");
+      assertThat(e).hasMessage(format("%nExpecting:%n <2000-01-05T03:00:05.000Z>%nnot to be equal to:%n <2000-01-05T03:00:05.000Z>%n"));
       return;
     }
     fail("Should have thrown AssertionError");

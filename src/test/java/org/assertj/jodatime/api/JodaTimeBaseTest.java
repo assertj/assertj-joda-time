@@ -12,6 +12,7 @@
  */
 package org.assertj.jodatime.api;
 
+import static java.lang.String.format;
 import static org.junit.rules.ExpectedException.none;
 
 import org.junit.Assert;
@@ -25,11 +26,11 @@ public class JodaTimeBaseTest {
 
   protected void expectException(Class<? extends Throwable> type, String message) {
     thrown.expect(type);
-    thrown.expectMessage(message);
+    thrown.expectMessage(format(message));
   }
   
   protected void expectIllegalArgumentException(String message) {
-    expectException(IllegalArgumentException.class, message);
+    expectException(IllegalArgumentException.class, format(message));
   }
 
   public void failBecauseExpectedAssertionErrorWasNotThrown() {

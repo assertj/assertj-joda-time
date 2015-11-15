@@ -18,8 +18,6 @@ import static org.joda.time.DateTime.now;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Test;
-import org.junit.experimental.theories.Theories;
-import org.junit.runner.RunWith;
 
 /**
  * Tests specific to {@link org.assertj.jodatime.api.DateTimeAssert#isIn(org.joda.time.DateTime...)} that can't be done

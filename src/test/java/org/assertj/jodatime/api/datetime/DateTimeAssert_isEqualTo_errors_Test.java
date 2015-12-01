@@ -22,6 +22,7 @@ import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
+import sun.jvm.hotspot.utilities.Assert;
 
 /**
  * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)
@@ -56,6 +57,18 @@ public class DateTimeAssert_isEqualTo_errors_Test extends DateTimeAssertBaseTest
         "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isEqualTo((String) null);
   }
+
+  @Test
+  public void isEqualTo_should_respond_gracefully_for_null_inputs() {
+    DateTime nullDateTime = null;
+    try {
+      assertThat(nullDateTime).isEqualTo(new DateTime());
+    } catch (AssertionError e) {
+      return;
+    }
+    fail("Should have thrown AssertionError");
+  }
+
 
   private static void verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(DateTime reference) {
     try {

@@ -15,6 +15,7 @@ package org.assertj.jodatime.api.datetime;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
+import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTimeZone.UTC;
 
 import org.joda.time.DateTime;
@@ -56,6 +57,18 @@ public class DateTimeAssert_isEqualTo_errors_Test extends DateTimeAssertBaseTest
         "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isEqualTo((String) null);
   }
+
+  @Test
+  public void isEqualTo_should_respond_gracefully_for_null_inputs() {
+    DateTime nullDateTime = null;
+    try {
+      assertThat(nullDateTime).isEqualTo(now());
+    } catch (AssertionError e) {
+      return;
+    }
+    fail("Should have thrown AssertionError");
+  }
+
 
   private static void verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(DateTime reference) {
     try {

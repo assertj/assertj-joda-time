@@ -36,4 +36,12 @@ public class DateTimeAssert_isIn_Test extends DateTimeAssertBaseTest {
     assertThat(utcDateTime).isIn(cestDateTime, now());
   }
 
+  @Test
+  public void should_handle_null_actual_gracefully() {
+    // GIVEN
+    DateTime nullDateTime = null;
+    // THEN
+    assertThat(nullDateTime).isIn(null, now());
+  }
+
 }

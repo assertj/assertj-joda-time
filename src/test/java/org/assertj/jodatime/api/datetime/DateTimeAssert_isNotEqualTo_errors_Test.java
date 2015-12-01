@@ -16,6 +16,7 @@ import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
+import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTimeZone.UTC;
 
 import org.joda.time.DateTime;
@@ -57,6 +58,14 @@ public class DateTimeAssert_isNotEqualTo_errors_Test extends DateTimeAssertBaseT
     expectException(IllegalArgumentException.class,
         "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isNotEqualTo((String) null);
+  }
+
+  @Test
+  public void should_handle_null_actual_gracefully() {
+    // GIVEN
+    DateTime nullDateTime = null;
+    // THEN
+    assertThat(nullDateTime).isNotEqualTo(now().toString());
   }
 
   private static void verify_that_isNotEqualTo_assertion_fails_and_throws_AssertionError(DateTime reference) {

@@ -12,6 +12,7 @@
  */
 package org.assertj.jodatime.api;
 
+import static org.assertj.core.error.ShouldNotBeEqual.shouldNotBeEqual;
 import static org.assertj.jodatime.error.ShouldBeAfter.shouldBeAfter;
 import static org.assertj.jodatime.error.ShouldBeAfterOrEqualsTo.shouldBeAfterOrEqualsTo;
 import static org.assertj.jodatime.error.ShouldBeBefore.shouldBeBefore;
@@ -65,7 +66,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws AssertionError if the actual {@code DateTime} is not strictly before the given one.
    */
   public DateTimeAssert isBefore(DateTime other) {
-    Objects.instance().assertNotNull(info, actual);
+    isNotNull();
     assertDateTimeParameterIsNotNull(other);
     if (!actual.isBefore(other)) {
       throw Failures.instance().failure(info, shouldBeBefore(actual, other));
@@ -112,7 +113,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws AssertionError if the actual {@code DateTime} is not before or equals to the given one.
    */
   public DateTimeAssert isBeforeOrEqualTo(DateTime other) {
-    Objects.instance().assertNotNull(info, actual);
+    isNotNull();
     assertDateTimeParameterIsNotNull(other);
     if (actual.isAfter(other)) {
       throw Failures.instance().failure(info, shouldBeBeforeOrEqualsTo(actual, other));
@@ -160,7 +161,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws AssertionError if the actual {@code DateTime} is not after or equals to the given one.
    */
   public DateTimeAssert isAfterOrEqualTo(DateTime other) {
-    Objects.instance().assertNotNull(info, actual);
+    isNotNull();
     assertDateTimeParameterIsNotNull(other);
     if (actual.isBefore(other)) {
       throw Failures.instance().failure(info, shouldBeAfterOrEqualsTo(actual, other));
@@ -207,7 +208,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws AssertionError if the actual {@code DateTime} is not strictly after the given one.
    */
   public DateTimeAssert isAfter(DateTime other) {
-    Objects.instance().assertNotNull(info, actual);
+    isNotNull();
     assertDateTimeParameterIsNotNull(other);
     if (!actual.isAfter(other)) {
       throw Failures.instance().failure(info, shouldBeAfter(actual, other));
@@ -269,7 +270,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws AssertionError if the actual {@code DateTime} is are not equal with milliseconds ignored.
    */
   public DateTimeAssert isEqualToIgnoringMillis(DateTime other) {
-    Objects.instance().assertNotNull(info, actual);
+    isNotNull();
     assertDateTimeParameterIsNotNull(other);
     if (!areEqualIgnoringMillis(actual, other.toDateTime(actual.getZone()))) {
       throw Failures.instance().failure(info, shouldBeEqualIgnoringMillis(actual, other));
@@ -307,7 +308,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws AssertionError if the actual {@code DateTime} is are not equal with second and millisecond fields ignored.
    */
   public DateTimeAssert isEqualToIgnoringSeconds(DateTime other) {
-    Objects.instance().assertNotNull(info, actual);
+    isNotNull();
     assertDateTimeParameterIsNotNull(other);
     if (!areEqualIgnoringSeconds(actual, other.toDateTime(actual.getZone()))) {
       throw Failures.instance().failure(info, shouldBeEqualIgnoringSeconds(actual, other));
@@ -346,7 +347,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    *           fields.
    */
   public DateTimeAssert isEqualToIgnoringMinutes(DateTime other) {
-    Objects.instance().assertNotNull(info, actual);
+    isNotNull();
     assertDateTimeParameterIsNotNull(other);
     if (!areEqualIgnoringMinutes(actual, other.toDateTime(actual.getZone()))) {
       throw Failures.instance().failure(info, shouldBeEqualIgnoringMinutes(actual, other));
@@ -384,7 +385,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws AssertionError if the actual {@code DateTime} is are not equal with second and millisecond fields ignored.
    */
   public DateTimeAssert isEqualToIgnoringHours(DateTime other) {
-    Objects.instance().assertNotNull(info, actual);
+    isNotNull();
     assertDateTimeParameterIsNotNull(other);
     if (!haveSameYearMonthAndDayOfMonth(actual, other.toDateTime(actual.getZone()))) {
       throw Failures.instance().failure(info, shouldBeEqualIgnoringHours(actual, other));
@@ -405,6 +406,11 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    *           DateTimeZone.
    */
   public DateTimeAssert isEqualTo(DateTime expected) {
+    if (expected == null) {
+      isNull();
+      return this;
+    }
+    isNotNull();
     return super.isEqualTo(new DateTime(expected, actual.getZone()));
   }
 
@@ -444,7 +450,9 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    *           DateTimeZone.
    */
   public DateTimeAssert isNotEqualTo(DateTime expected) {
-    return super.isNotEqualTo(new DateTime(expected, actual.getZone()));
+    // if actual is null, we don't really care about DateTimeZone
+    DateTime other = actual == null ? expected : new DateTime(expected, actual.getZone());
+    return super.isNotEqualTo(other);
   }
 
   /**
@@ -468,7 +476,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert isNotEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isNotEqualTo(new DateTime(dateTimeAsString, actual.getZone()));
+    return isNotEqualTo(new DateTime(dateTimeAsString));
   }
 
   /**
@@ -551,11 +559,13 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
     return isNotIn(convertToDateTimeArray(dateTimesAsString));
   }
 
+  // TODO use Java 8 streams
   private DateTime[] convertToDateTimeArray(String... dateTimesAsString) {
     DateTime[] dates = new DateTime[dateTimesAsString.length];
     for (int i = 0; i < dateTimesAsString.length; i++) {
-      // building the DateTime in actual's DateTimeZone
-      dates[i] = new DateTime(dateTimesAsString[i], actual.getZone());
+      // building the DateTime in actual's DateTimeZone if not null
+      dates[i] = actual == null ? new DateTime(dateTimesAsString[i])
+          : new DateTime(dateTimesAsString[i], actual.getZone());
     }
     return dates;
   }
@@ -563,19 +573,15 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   private DateTime[] changeToActualTimeZone(DateTime... dateTimes) {
     DateTime[] dates = new DateTime[dateTimes.length];
     for (int i = 0; i < dateTimes.length; i++) {
-      // building the DateTime in actual's DateTimeZone
-      dates[i] = new DateTime(dateTimes[i], actual.getZone());
+      // building the DateTime in actual's DateTimeZone if not null
+      dates[i] = actual == null ? dateTimes[i] : new DateTime(dateTimes[i], actual.getZone());
     }
     return dates;
   }
 
   private void checkIsNotNullAndNotEmpty(Object[] values) {
-    if (values == null) {
-      throw new IllegalArgumentException("The given DateTime array should not be null");
-    }
-    if (values.length == 0) {
-      throw new IllegalArgumentException("The given DateTime array should not be empty");
-    }
+    if (values == null) throw new IllegalArgumentException("The given DateTime array should not be null");
+    if (values.length == 0) throw new IllegalArgumentException("The given DateTime array should not be empty");
   }
 
   /**
@@ -586,9 +592,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws {@link IllegalArgumentException} with an explicit message if the given {@link DateTime} is null
    */
   private static void assertDateTimeParameterIsNotNull(DateTime dateTime) {
-    if (dateTime == null) {
-      throw new IllegalArgumentException(NULL_DATE_TIME_PARAMETER_MESSAGE);
-    }
+    if (dateTime == null) throw new IllegalArgumentException(NULL_DATE_TIME_PARAMETER_MESSAGE);
   }
 
   /**
@@ -599,10 +603,8 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws {@link IllegalArgumentException} with an explicit message if the given {@link String} is null
    */
   private static void assertDateTimeAsStringParameterIsNotNull(String dateTimeAsString) {
-    if (dateTimeAsString == null) {
-      throw new IllegalArgumentException(
-          "The String representing the DateTime to compare actual with should not be null");
-    }
+    if (dateTimeAsString == null)
+      throw new IllegalArgumentException("The String representing the DateTime to compare actual with should not be null");
   }
 
   /**

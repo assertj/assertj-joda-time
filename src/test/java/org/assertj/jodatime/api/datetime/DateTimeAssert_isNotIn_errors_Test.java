@@ -16,6 +16,7 @@ import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.jodatime.api.Assertions.assertThat;
+import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTimeZone.UTC;
 
 import org.joda.time.DateTime;
@@ -64,6 +65,14 @@ public class DateTimeAssert_isNotIn_errors_Test extends DateTimeAssertBaseTest {
   public void should_fail_if_dateTimes_as_string_array_parameter_is_empty() {
     expectException(IllegalArgumentException.class, "The given DateTime array should not be empty");
     assertThat(new DateTime()).isNotIn(new String[0]);
+  }
+
+  @Test
+  public void should_handle_null_actual_gracefully() {
+    // GIVEN
+    DateTime nullDateTime = null;
+    // THEN
+    assertThat(nullDateTime).isNotIn(now(), now());
   }
 
   private static void verify_that_isNotIn_assertion_fails_and_throws_AssertionError(DateTime reference) {

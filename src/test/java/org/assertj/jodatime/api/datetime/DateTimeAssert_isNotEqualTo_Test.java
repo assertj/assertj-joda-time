@@ -12,11 +12,12 @@
  */
 package org.assertj.jodatime.api.datetime;
 
+import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.jodatime.api.Assertions.assertThat;
+
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Test;
-
-import static org.assertj.jodatime.api.Assertions.assertThat;
 
 /**
  * Tests specific to {@link org.assertj.jodatime.api.DateTimeAssert#isNotEqualTo(org.joda.time.DateTime)} that can't be
@@ -36,4 +37,25 @@ public class DateTimeAssert_isNotEqualTo_Test extends DateTimeAssertBaseTest {
     assertThat(cestDateTime).as("in CEST time zone").isNotEqualTo(utcDateTime);
   }
 
+  @Test
+  public void should_handle_null_actual_gracefully() {
+    // GIVEN
+    DateTime nullDateTime = null;
+    // THEN
+    assertThat(nullDateTime).isNotEqualTo(DateTime.now());
+  }
+
+  @Test
+  public void should_fail_if_both_actual_and_expected_are_null() {
+    // GIVEN
+    DateTime nullDateTime = null;
+    // THEN
+    try {
+      assertThat(nullDateTime).isNotEqualTo(nullDateTime);
+    } catch (AssertionError e) {
+      return;
+    }
+    fail("Should have thrown AssertionError");
+  }
+  
 }

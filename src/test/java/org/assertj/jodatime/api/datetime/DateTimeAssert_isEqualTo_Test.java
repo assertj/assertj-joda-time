@@ -36,4 +36,11 @@ public class DateTimeAssert_isEqualTo_Test extends DateTimeAssertBaseTest {
     assertThat(cestDateTime).as("in CEST time zone").isEqualTo(utcDateTime);
   }
 
+  @Test
+  public void isEqualTo_should_compare_null_DateTimes() {
+    DateTime nullDateTime = null;
+
+    assertThat(nullDateTime).isEqualTo(nullDateTime);
+  }
+
 }

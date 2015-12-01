@@ -22,7 +22,6 @@ import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
-import sun.jvm.hotspot.utilities.Assert;
 
 /**
  * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)

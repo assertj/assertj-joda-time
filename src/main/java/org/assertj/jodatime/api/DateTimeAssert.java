@@ -405,6 +405,11 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    *           DateTimeZone.
    */
   public DateTimeAssert isEqualTo(DateTime expected) {
+    if(actual == null) {
+      Objects.instance().assertNull(info, expected);
+      return this;
+    }
+
     return super.isEqualTo(new DateTime(expected, actual.getZone()));
   }
 

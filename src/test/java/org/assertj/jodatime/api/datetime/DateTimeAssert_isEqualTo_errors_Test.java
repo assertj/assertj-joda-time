@@ -57,6 +57,18 @@ public class DateTimeAssert_isEqualTo_errors_Test extends DateTimeAssertBaseTest
     assertThat(new DateTime()).isEqualTo((String) null);
   }
 
+  @Test
+  public void isEqualTo_should_respond_gracefully_for_null_inputs() {
+    DateTime nullDateTime = null;
+    try {
+      assertThat(nullDateTime).isEqualTo(new DateTime());
+    } catch (AssertionError e) {
+      return;
+    }
+    fail("Should have thrown AssertionError");
+  }
+
+
   private static void verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(DateTime reference) {
     try {
       assertThat(reference).isEqualTo(reference.plus(1).toString());

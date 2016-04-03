@@ -8,11 +8,10 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *
- * Copyright 2012-2015 the original author or authors.
+ * Copyright 2012-2016 the original author or authors.
  */
 package org.assertj.jodatime.api;
 
-import static org.assertj.core.error.ShouldNotBeEqual.shouldNotBeEqual;
 import static org.assertj.jodatime.error.ShouldBeAfter.shouldBeAfter;
 import static org.assertj.jodatime.error.ShouldBeAfterOrEqualsTo.shouldBeAfterOrEqualsTo;
 import static org.assertj.jodatime.error.ShouldBeBefore.shouldBeBefore;
@@ -24,7 +23,6 @@ import static org.assertj.jodatime.error.ShouldBeEqualIgnoringSeconds.shouldBeEq
 
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.internal.Failures;
-import org.assertj.core.internal.Objects;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
@@ -559,7 +557,6 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
     return isNotIn(convertToDateTimeArray(dateTimesAsString));
   }
 
-  // TODO use Java 8 streams
   private DateTime[] convertToDateTimeArray(String... dateTimesAsString) {
     DateTime[] dates = new DateTime[dateTimesAsString.length];
     for (int i = 0; i < dateTimesAsString.length; i++) {

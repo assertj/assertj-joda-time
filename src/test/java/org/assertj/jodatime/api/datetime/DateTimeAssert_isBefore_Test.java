@@ -14,6 +14,7 @@ package org.assertj.jodatime.api.datetime;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
@@ -50,7 +51,7 @@ public class DateTimeAssert_isBefore_Test extends DateTimeAssertBaseTest {
     DateTime utcDateTime = new DateTime(2013, 6, 10, 0, 0, DateTimeZone.UTC);
     DateTimeZone cestTimeZone = DateTimeZone.forID("Europe/Berlin");
     DateTime cestDateTime2 = new DateTime(2013, 6, 10, 3, 0, cestTimeZone);
-    //  utcDateTime < cestDateTime2  
+    // utcDateTime < cestDateTime2
     assertThat(utcDateTime).as("in UTC time zone").isBefore(cestDateTime2);
     // utcDateTime = cestDateTime1
     try {
@@ -75,9 +76,15 @@ public class DateTimeAssert_isBefore_Test extends DateTimeAssertBaseTest {
 
   @Test
   public void should_fail_if_actual_is_null() {
-    expectException(AssertionError.class, actualIsNull());
-    DateTime actual = null;
-    assertThat(actual).isBefore(new DateTime());
+    DateTime nullDateTime = null;
+    DateTime other = new DateTime();
+
+    assertThatThrownBy(() -> assertThat(nullDateTime).isBefore(other)).as("other=%s", other)
+                                                                      .hasMessage(format(actualIsNull()));
+    assertThatThrownBy(() -> assertThat(nullDateTime).isBefore(other.toString())).as("other=%s", other)
+                                                                                 .hasMessage(format(actualIsNull()));
+    assertThatThrownBy(() -> assertThat(nullDateTime).isBefore((String) null)).as("other=%s", other)
+                                                                              .hasMessage(format(actualIsNull()));
   }
 
   @Test
@@ -89,12 +96,12 @@ public class DateTimeAssert_isBefore_Test extends DateTimeAssertBaseTest {
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
+                    "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isBefore((String) null);
   }
 
   private static void verify_that_isBefore_assertion_fails_and_throws_AssertionError(DateTime dateToTest,
-      DateTime reference) {
+                                                                                     DateTime reference) {
     try {
       assertThat(dateToTest).isBefore(reference);
     } catch (AssertionError e) {

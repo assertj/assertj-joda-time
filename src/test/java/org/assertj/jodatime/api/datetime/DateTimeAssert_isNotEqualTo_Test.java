@@ -12,7 +12,7 @@
  */
 package org.assertj.jodatime.api.datetime;
 
-import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
 import org.joda.time.DateTime;
@@ -43,19 +43,13 @@ public class DateTimeAssert_isNotEqualTo_Test extends DateTimeAssertBaseTest {
     DateTime nullDateTime = null;
     // THEN
     assertThat(nullDateTime).isNotEqualTo(DateTime.now());
+    assertThat(nullDateTime).isNotEqualTo(DateTime.now().toString());
   }
 
   @Test
   public void should_fail_if_both_actual_and_expected_are_null() {
-    // GIVEN
     DateTime nullDateTime = null;
-    // THEN
-    try {
-      assertThat(nullDateTime).isNotEqualTo(nullDateTime);
-    } catch (AssertionError e) {
-      return;
-    }
-    fail("Should have thrown AssertionError");
+    assertThatThrownBy(() -> assertThat(nullDateTime).isNotEqualTo(nullDateTime)).isInstanceOf(AssertionError.class);
   }
-  
+
 }

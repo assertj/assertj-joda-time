@@ -66,9 +66,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   public DateTimeAssert isBefore(DateTime other) {
     isNotNull();
     assertDateTimeParameterIsNotNull(other);
-    if (!actual.isBefore(other)) {
-      throw Failures.instance().failure(info, shouldBeBefore(actual, other));
-    }
+    if (!actual.isBefore(other)) throw Failures.instance().failure(info, shouldBeBefore(actual, other));
     return this;
   }
 
@@ -93,6 +91,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    *           String.
    */
   public DateTimeAssert isBefore(String dateTimeAsString) {
+    isNotNull();
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
     return isBefore(new DateTime(dateTimeAsString, actual.getZone()));
   }
@@ -100,17 +99,24 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   /**
    * Verifies that the actual {@code DateTime} is before or equals to the given one.
    * <p>
+   * Assertion succeeds when both actual and given {@link DateTime} are null.
+   * <p>
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(new DateTime(&quot;2000-01-01&quot;))
-   *                                       .isBeforeOrEqualTo(new DateTime(&quot;2000-01-02&quot;));</code></pre>
+   *                                       .isBeforeOrEqualTo(new DateTime(&quot;2000-01-02&quot;));
+   *                                                 
+   * // assertions succeed when both actual and expected are null 
+   * DateTime actual = null;
+   * assertThat(actual).isBeforeOrEqualTo((DateTime)null);</code></pre>
    * 
    * @param other the given {@link DateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null} and given one is not.
    * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the actual {@code DateTime} is not before or equals to the given one.
    */
   public DateTimeAssert isBeforeOrEqualTo(DateTime other) {
+    if (actual == other) return this;
     isNotNull();
     assertDateTimeParameterIsNotNull(other);
     if (actual.isAfter(other)) {
@@ -141,6 +147,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    *           given String.
    */
   public DateTimeAssert isBeforeOrEqualTo(String dateTimeAsString) {
+    isNotNull();
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
     return isBeforeOrEqualTo(new DateTime(dateTimeAsString, actual.getZone()));
   }
@@ -148,22 +155,28 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   /**
    * Verifies that the actual {@code DateTime} is after or equals to the given one.
    * <p>
+   * Assertion succeeds when both actual and given {@link DateTime} are null.
+   * <p>
    * Example :
-   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).isAfterOrEqualTo(new DateTime(&quot;2000-01-01&quot;))
-   *                                       .isAfterOrEqualTo(new DateTime(&quot;1999-12-31&quot;));</code></pre>
+   * <pre><code class='java'> // assertions succeed
+   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isAfterOrEqualTo(new DateTime(&quot;2000-01-01&quot;))
+   *                                                 .isAfterOrEqualTo(new DateTime(&quot;1999-12-31&quot;));
+   *                                                 
+   * // assertions succeed when both actual and expected are null 
+   * DateTime actual = null;
+   * assertThat(actual).isAfterOrEqualTo((DateTime)null);</code></pre>
    * 
    * @param other the given {@link DateTime}.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null} and given one is not.
    * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the actual {@code DateTime} is not after or equals to the given one.
    */
   public DateTimeAssert isAfterOrEqualTo(DateTime other) {
+    if (actual == other) return this;
     isNotNull();
     assertDateTimeParameterIsNotNull(other);
-    if (actual.isBefore(other)) {
-      throw Failures.instance().failure(info, shouldBeAfterOrEqualsTo(actual, other));
-    }
+    if (actual.isBefore(other)) throw Failures.instance().failure(info, shouldBeAfterOrEqualsTo(actual, other));
     return this;
   }
 
@@ -189,6 +202,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    *           given String.
    */
   public DateTimeAssert isAfterOrEqualTo(String dateTimeAsString) {
+    isNotNull();
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
     return isAfterOrEqualTo(new DateTime(dateTimeAsString, actual.getZone()));
   }
@@ -208,9 +222,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   public DateTimeAssert isAfter(DateTime other) {
     isNotNull();
     assertDateTimeParameterIsNotNull(other);
-    if (!actual.isAfter(other)) {
-      throw Failures.instance().failure(info, shouldBeAfter(actual, other));
-    }
+    if (!actual.isAfter(other)) throw Failures.instance().failure(info, shouldBeAfter(actual, other));
     return this;
   }
 
@@ -234,6 +246,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    *           String.
    */
   public DateTimeAssert isAfter(String dateTimeAsString) {
+    isNotNull();
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
     return isAfter(new DateTime(dateTimeAsString, actual.getZone()));
   }
@@ -242,7 +255,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Verifies that actual and given {@code DateTime} have same year, month, day, hour, minute and second fields,
    * (millisecond fields are ignored in comparison).
    * <p>
-   * Note that given {@link DateTime} is converted in the actual's {@link DateTimeZone} before comparison.
+   * Note that given {@link DateTime} is converted in actual's {@link DateTimeZone} before comparison.
    * <p>
    * Assertion can fail with dateTimes in same chronological millisecond time window, e.g :
    * <p>
@@ -280,7 +293,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Verifies that actual and given {@link DateTime} have same year, month, day, hour and minute fields (second and
    * millisecond fields are ignored in comparison).
    * <p>
-   * Note that given {@link DateTime} is converted in the actual's {@link DateTimeZone} before comparison.
+   * Note that given {@link DateTime} is converted in actual's {@link DateTimeZone} before comparison.
    * <p>
    * Assertion can fail with DateTimes in same chronological second time window, e.g :
    * <p>
@@ -318,7 +331,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Verifies that actual and given {@code DateTime} have same year, month, day and hour fields (minute, second and
    * millisecond fields are ignored in comparison).
    * <p>
-   * Note that given {@link DateTime} is converted in the actual's {@link DateTimeZone} before comparison.
+   * Note that given {@link DateTime} is converted in actual's {@link DateTimeZone} before comparison.
    * <p>
    * Assertion can fail with dateTimes in same chronological second time window, e.g :
    * <p>
@@ -357,7 +370,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Verifies that actual and given {@code DateTime} have same year, month and day fields (hour, minute, second and
    * millisecond fields are ignored in comparison).
    * <p>
-   * Note that given {@link DateTime} is converted in the actual's {@link DateTimeZone} before comparison.
+   * Note that given {@link DateTime} is converted in actual's {@link DateTimeZone} before comparison.
    * <p>
    * Assertion can fail with dateTimes in same chronological minute time window, e.g :
    * <p>
@@ -392,11 +405,17 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   }
 
   /**
-   * Verifies that the actual {@link DateTime} is equal to the given one <b>in the actual's {@link DateTimeZone}</b>.
+   * Verifies that the actual {@link DateTime} is equal to the given one <b>in actual's {@link DateTimeZone}</b>.
+   * <p>
+   * Assertion succeeds when both actual and given {@link DateTime} are null.
    * <p>
    * Example :
-   * <pre><code class='java'> // use directly String in comparison to avoid a conversion
-   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isEqualTo(new DateTime(&quot;2000-01-01&quot;));</code></pre>
+   * <pre><code class='java'> // assertions succeed
+   * assertThat(new DateTime(&quot;2000-01-01&quot;)).isEqualTo(new DateTime(&quot;2000-01-01&quot;));
+   * 
+   * DateTime actual = null;
+   * DateTime other = null;
+   * assertThat(actual).isEqualTo(other);</code></pre>
    * 
    * @param expected the given value to compare the actual value to.
    * @return {@code this} assertion object.
@@ -404,10 +423,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    *           DateTimeZone.
    */
   public DateTimeAssert isEqualTo(DateTime expected) {
-    if (expected == null) {
-      isNull();
-      return this;
-    }
+    if (actual == expected) return this;
     isNotNull();
     return super.isEqualTo(new DateTime(expected, actual.getZone()));
   }
@@ -433,11 +449,11 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert isEqualTo(String dateTimeAsString) {
     assertDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isEqualTo(new DateTime(dateTimeAsString, actual.getZone()));
+    return isEqualTo(new DateTime(dateTimeAsString));
   }
 
   /**
-   * Verifies that the actual value is not equal to the given one <b>in the actual DateTime's DateTimeZone</b>.
+   * Verifies that the actual value is not equal to the given one <b>in actual's {@link DateTimeZone}</b>.
    * <p>
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).isNotEqualTo(new DateTime(&quot;2000-01-15&quot;));</code></pre>
@@ -460,7 +476,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * >ISO DateTime format</a> to allow calling {@link DateTime#DateTime(Object) DateTime(Object)} constructor.
    * <p>
    * Note that the {@link DateTime} created from the given String is built in the {@link DateTimeZone} of the
-   * {@link DateTime} to check.. {@link DateTime}.
+   * {@link DateTime} to check.
    * <p>
    * Example :
    * <pre><code class='java'> // use directly String in comparison to avoid a conversion
@@ -490,6 +506,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws AssertionError if the actual {@code DateTime} is not in the given {@link DateTime}s.
    */
   public DateTimeAssert isIn(DateTime... expected) {
+    checkIsNotNullAndNotEmpty(expected);
     return super.isIn((Object[]) changeToActualTimeZone(expected));
   }
 
@@ -530,6 +547,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @throws AssertionError if the actual {@code DateTime} is not in the given {@link DateTime}s.
    */
   public DateTimeAssert isNotIn(DateTime... expected) {
+    checkIsNotNullAndNotEmpty(expected);
     return super.isNotIn((Object[]) changeToActualTimeZone(expected));
   }
 

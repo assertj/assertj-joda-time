@@ -70,14 +70,27 @@ public class DateTimeAssert_isBeforeOrEqualTo_Test extends DateTimeAssertBaseTes
   }
 
   @Test
-  public void should_fail_if_actual_is_null() {
+  public void should_pass_if_both_actual_and_parameter_are_null() {
+    DateTime actual = null;
+    assertThat(actual).isAfterOrEqualTo((DateTime) null);
+  }
+
+  @Test
+  public void should_fail_if_actual_is_null_and_parameter_is_not() {
     expectException(AssertionError.class, actualIsNull());
     DateTime actual = null;
     assertThat(actual).isBeforeOrEqualTo(new DateTime());
   }
 
   @Test
-  public void should_fail_if_dateTime_parameter_is_null() {
+  public void should_fail_if_actual_is_null_and_dateTime_as_string_parameter_is_not() {
+    expectException(AssertionError.class, actualIsNull());
+    DateTime actual = null;
+    assertThat(actual).isBeforeOrEqualTo(new DateTime().toString());
+  }
+  
+  @Test
+  public void should_fail_if_dateTime_parameter_is_null_but_actual_is_not() {
     expectException(IllegalArgumentException.class, "The DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isBeforeOrEqualTo((DateTime) null);
   }
@@ -87,6 +100,7 @@ public class DateTimeAssert_isBeforeOrEqualTo_Test extends DateTimeAssertBaseTes
     expectException(IllegalArgumentException.class,
         "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isBeforeOrEqualTo((String) null);
+    assertThat((DateTime) null).isBeforeOrEqualTo((String) null);
   }
 
   private static void verify_that_isBeforeOrEqual_assertion_fails_and_throws_AssertionError(DateTime dateToCheck,

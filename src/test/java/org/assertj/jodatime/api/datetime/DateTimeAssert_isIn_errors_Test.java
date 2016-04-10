@@ -59,6 +59,12 @@ public class DateTimeAssert_isIn_errors_Test extends DateTimeAssertBaseTest {
   }
 
   @Test
+  public void should_fail_if_dateTimes_parameter_is_null() {
+    expectException(IllegalArgumentException.class, "The given DateTime array should not be null");
+    assertThat(new DateTime()).isIn((DateTime[]) null);
+  }
+  
+  @Test
   public void should_fail_if_dateTimes_as_string_array_parameter_is_empty() {
     expectException(IllegalArgumentException.class, "The given DateTime array should not be empty");
     assertThat(new DateTime()).isIn(new String[0]);

@@ -14,6 +14,7 @@ package org.assertj.jodatime.api.datetime;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
@@ -74,9 +75,15 @@ public class DateTimeAssert_isAfter_Test extends DateTimeAssertBaseTest {
 
   @Test
   public void should_fail_if_actual_is_null() {
-    expectException(AssertionError.class, actualIsNull());
-    DateTime actual = null;
-    assertThat(actual).isAfter(new DateTime());
+    DateTime nullDateTime = null;
+    DateTime other = new DateTime();
+
+    assertThatThrownBy(() -> assertThat(nullDateTime).isAfter(other)).as("other=%s", other)
+                                                                     .hasMessage(format(actualIsNull()));
+    assertThatThrownBy(() -> assertThat(nullDateTime).isAfter(other.toString())).as("other=%s", other)
+                                                                                .hasMessage(format(actualIsNull()));
+    assertThatThrownBy(() -> assertThat(nullDateTime).isAfter((String) null)).as("other=%s", other)
+                                                                             .hasMessage(format(actualIsNull()));
   }
 
   @Test
@@ -93,7 +100,7 @@ public class DateTimeAssert_isAfter_Test extends DateTimeAssertBaseTest {
   }
 
   private static void verify_that_isAfter_assertion_fails_and_throws_AssertionError(DateTime dateToCheck,
-      DateTime reference) {
+                                                                                    DateTime reference) {
     try {
       assertThat(dateToCheck).isAfter(reference);
     } catch (AssertionError e) {

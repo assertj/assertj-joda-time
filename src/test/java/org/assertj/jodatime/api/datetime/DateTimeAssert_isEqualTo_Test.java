@@ -33,13 +33,14 @@ public class DateTimeAssert_isEqualTo_Test extends DateTimeAssertBaseTest {
     DateTime cestDateTime = new DateTime(2013, 6, 10, 2, 0, cestTimeZone);
     // datetime are equals in same timezone
     assertThat(utcDateTime).as("in UTC time zone").isEqualTo(cestDateTime);
+    assertThat(utcDateTime).as("in UTC time zone").isEqualTo(cestDateTime.toString());
     assertThat(cestDateTime).as("in CEST time zone").isEqualTo(utcDateTime);
+    assertThat(cestDateTime).as("in CEST time zone").isEqualTo(utcDateTime.toString());
   }
 
   @Test
-  public void isEqualTo_should_compare_null_DateTimes() {
+  public void isEqualTo_should_pass_if_both_actual_and_expected_DateTime_are_null() {
     DateTime nullDateTime = null;
-
     assertThat(nullDateTime).isEqualTo(nullDateTime);
   }
 

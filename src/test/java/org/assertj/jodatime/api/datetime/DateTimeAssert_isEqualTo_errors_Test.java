@@ -12,8 +12,11 @@
  */
 package org.assertj.jodatime.api.datetime;
 
+import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 import static org.joda.time.DateTime.now;
 import static org.joda.time.DateTimeZone.UTC;
@@ -52,23 +55,27 @@ public class DateTimeAssert_isEqualTo_errors_Test extends DateTimeAssertBaseTest
   }
 
   @Test
-  public void should_fail_if_dateTime_as_string_parameter_is_null() {
+  public void should_fail_if_dateTime_as_string_parameter_is_null_and_actual_is_not() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
+                    "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isEqualTo((String) null);
   }
 
   @Test
-  public void isEqualTo_should_respond_gracefully_for_null_inputs() {
+  public void should_fail_if_actual_is_null() {
     DateTime nullDateTime = null;
-    try {
-      assertThat(nullDateTime).isEqualTo(now());
-    } catch (AssertionError e) {
-      return;
-    }
-    fail("Should have thrown AssertionError");
-  }
+    DateTime other = now();
 
+    assertThatThrownBy(() -> assertThat(nullDateTime).isEqualTo(other)).as("other=%s", other)
+                                                                       .isInstanceOf(AssertionError.class)
+                                                                       .hasMessage(format(actualIsNull()));
+    assertThatThrownBy(() -> assertThat(nullDateTime).isEqualTo(other.toString())).as("other=%s", other)
+                                                                                  .isInstanceOf(AssertionError.class)
+                                                                                  .hasMessage(format(actualIsNull()));
+    assertThatThrownBy(() -> assertThat(nullDateTime).isEqualTo((String) null)).as("other=%s", other)
+                                                                               .isInstanceOf(IllegalArgumentException.class)
+                                                                               .hasMessage("The String representing the DateTime to compare actual with should not be null");
+  }
 
   private static void verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(DateTime reference) {
     try {

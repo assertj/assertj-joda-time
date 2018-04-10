@@ -20,6 +20,13 @@ import static org.assertj.jodatime.error.ShouldBeEqualIgnoringHours.shouldBeEqua
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringMillis.shouldBeEqualIgnoringMillis;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringMinutes.shouldBeEqualIgnoringMinutes;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringSeconds.shouldBeEqualIgnoringSeconds;
+import static org.assertj.jodatime.error.ShouldHaveDayOfMonthEqualTo.shouldHaveDayOfMonthEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveHourOfDayEqualTo.shouldHaveHoursEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveMillisOfSecondEqualTo.shouldHaveMillisOfSecondEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveMinuteOfHourEqualTo.shouldHaveMinuteOfHourEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveMonthOfYearEqualTo.shouldHaveMonthOfYearEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveSecondOfMinuteEqualTo.shouldHaveSecondOfMinuteEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveYearEqualTo.shouldHaveYearEqualTo;
 
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.internal.Failures;
@@ -31,10 +38,20 @@ import org.joda.time.DateTimeZone;
  * 
  * @author Paweł Stawicki
  * @author Joel Costigliola
+ * @author John Killmer
  */
 public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
 
   public static final String NULL_DATE_TIME_PARAMETER_MESSAGE = "The DateTime to compare actual with should not be null";
+
+  public static final String NULL_YEAR_PARAMETER_MESSAGE = "The year to compare actual with should not be null";
+  public static final String NULL_MONTH_PARAMETER_MESSAGE = "The month to compare actual with should not be null";
+  public static final String NULL_DAY_OF_MONTH_PARAMETER_MESSAGE = "The day of month to compare actual with should not be null";
+  public static final String NULL_HOUR_OF_DAY_PARAMETER_MESSAGE = "The hour of day to compare actual with should not be null";
+  public static final String NULL_MINUTE_OF_HOUR_PARAMETER_MESSAGE = "The minute of hour to compare actual with should not be null";
+  public static final String NULL_SECOND_OF_MINUTE_PARAMETER_MESSAGE = "The second of minute to compare actual with should not be null";
+  public static final String NULL_MILLIS_OF_SECOND_PARAMETER_MESSAGE = "The millis of second to compare actual with should not be null";
+
 
   /**
    * Creates a new <code>{@link org.assertj.jodatime.api.DateTimeAssert}</code>.
@@ -49,6 +66,67 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   // visible for test
   protected DateTime getActual() {
     return actual;
+  }
+
+  /**
+   * Verifies that the actual {@code DateTime} is <b>strictly</b> before the given one.
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasYear(1);</code></pre>
+   *
+   * @param other the given year.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code DateTime} is not strictly before the given one.
+   */
+  public DateTimeAssert hasYear(Integer other){
+    isNotNull();
+    assertParameterIsNotNull(other, NULL_YEAR_PARAMETER_MESSAGE);
+    if (actual.getYear() != other) throw Failures.instance().failure(info, shouldHaveYearEqualTo(actual, other));
+    return this;
+  }
+
+  public DateTimeAssert hasMonthOfYear(Integer other){
+    isNotNull();
+    assertParameterIsNotNull(other, NULL_MONTH_PARAMETER_MESSAGE);
+    if (actual.getMonthOfYear() != other) throw Failures.instance().failure(info, shouldHaveMonthOfYearEqualTo(actual, other));
+    return this;
+  }
+
+  public DateTimeAssert hasDayOfMonth(Integer other){
+    isNotNull();
+    assertParameterIsNotNull(other, NULL_DAY_OF_MONTH_PARAMETER_MESSAGE);
+    if (actual.getDayOfMonth() != other) throw Failures.instance().failure(info, shouldHaveDayOfMonthEqualTo(actual, other));
+    return this;
+  }
+
+  public DateTimeAssert hasHourOfDay(Integer other){
+    isNotNull();
+    assertParameterIsNotNull(other, NULL_HOUR_OF_DAY_PARAMETER_MESSAGE);
+    if (actual.getHourOfDay() != other) throw Failures.instance().failure(info, shouldHaveHoursEqualTo(actual, other));
+    return this;
+  }
+
+  public DateTimeAssert hasMinuteOfHour(Integer other){
+    isNotNull();
+    assertParameterIsNotNull(other, NULL_MINUTE_OF_HOUR_PARAMETER_MESSAGE);
+    if (actual.getMinuteOfHour() != other) throw Failures.instance().failure(info, shouldHaveMinuteOfHourEqualTo(actual, other));
+    return this;
+  }
+
+  public DateTimeAssert hasSecondOfMinute(Integer other){
+    isNotNull();
+    assertParameterIsNotNull(other, NULL_SECOND_OF_MINUTE_PARAMETER_MESSAGE);
+    if (actual.getSecondOfMinute() != other) throw Failures.instance().failure(info, shouldHaveSecondOfMinuteEqualTo(actual, other));
+    return this;
+  }
+
+  public DateTimeAssert hasMillisOfSecond(Integer other){
+    isNotNull();
+    assertParameterIsNotNull(other, NULL_MILLIS_OF_SECOND_PARAMETER_MESSAGE);
+    if (actual.getMillisOfSecond() != other) throw Failures.instance().failure(info, shouldHaveMillisOfSecondEqualTo(actual, other));
+    return this;
   }
 
   /**
@@ -597,6 +675,15 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   private void checkIsNotNullAndNotEmpty(Object[] values) {
     if (values == null) throw new IllegalArgumentException("The given DateTime array should not be null");
     if (values.length == 0) throw new IllegalArgumentException("The given DateTime array should not be empty");
+  }
+
+
+  /**
+   *
+   * @param other
+   */
+  private static void assertParameterIsNotNull(Integer integer, String exceptionMessage) {
+    if (integer == null) throw new IllegalArgumentException(exceptionMessage);
   }
 
   /**

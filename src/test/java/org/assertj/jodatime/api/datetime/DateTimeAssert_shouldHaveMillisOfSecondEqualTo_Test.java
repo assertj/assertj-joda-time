@@ -15,6 +15,7 @@ package org.assertj.jodatime.api.datetime;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
+import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
 public class DateTimeAssert_shouldHaveMillisOfSecondEqualTo_Test extends DateTimeAssertBaseTest {
@@ -31,5 +32,12 @@ public class DateTimeAssert_shouldHaveMillisOfSecondEqualTo_Test extends DateTim
                 "The millis of second to compare actual with should not be null");
         DateTime dateTime = new DateTime(2018,4,6,10,27,33,1);
         assertThat(dateTime).hasMillisOfSecond(null);
+    }
+
+    @Test
+    public void test_should_fail_if_actual_isnull(){
+        expectException(AssertionError.class, actualIsNull());
+        DateTime actualDateTime = null;
+        assertThat(actualDateTime).hasMillisOfSecond(2);
     }
 }

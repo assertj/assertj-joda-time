@@ -15,6 +15,7 @@ package org.assertj.jodatime.api.datetime;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
+import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
 
@@ -32,5 +33,12 @@ public class DateTimeAssert_shouldHaveHourOfDayEqualTo_Test extends DateTimeAsse
                 "The hour of day to compare actual with should not be null");
         DateTime dateTime = new DateTime(2018,4,6,10,27,33);
         assertThat(dateTime).hasHourOfDay(null);
+    }
+
+    @Test
+    public void test_should_fail_if_actual_is_null(){
+        expectException(AssertionError.class, actualIsNull());
+        DateTime actualDateTime = null;
+        assertThat(actualDateTime).hasHourOfDay(2);
     }
 }

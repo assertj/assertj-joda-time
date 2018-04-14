@@ -16,6 +16,12 @@ import org.assertj.core.error.BasicErrorMessageFactory;
 import org.assertj.core.error.ErrorMessageFactory;
 import org.joda.time.DateTime;
 
+/**
+ * Creates an error message indicating that an assertion that verifies a {@link DateTime} has a minute of hour
+ * equal to a given one failed.
+ *
+ * @author John Killmer
+ */
 public class ShouldHaveMinuteOfHourEqualTo extends BasicErrorMessageFactory {
     /**
      * Creates a new </code>{@link ShouldHaveMinuteOfHourEqualTo }</code>.

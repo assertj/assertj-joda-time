@@ -69,7 +69,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   }
 
   /**
-   * Verifies that the actual {@code DateTime} is <b>strictly</b> before the given one.
+   * Verifies that the year of the actual {@code DateTime} is equal to the given year
    * <p>
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasYear(1);</code></pre>
@@ -78,7 +78,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
    * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
-   * @throws AssertionError if the actual {@code DateTime} is not strictly before the given one.
+   * @throws AssertionError if the year of the actual {@code DateTime} is not equal to the given year.
    */
   public DateTimeAssert hasYear(Integer other){
     isNotNull();
@@ -87,6 +87,18 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
     return this;
   }
 
+  /**
+   * Verifies that the month of the actual {@code DateTime} is equal to the given month
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasMonthOfYear(1);</code></pre>
+   *
+   * @param other the given month.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
+   * @throws AssertionError if the month of the actual {@code DateTime} is not equal to the given month.
+   */
   public DateTimeAssert hasMonthOfYear(Integer other){
     isNotNull();
     assertParameterIsNotNull(other, NULL_MONTH_PARAMETER_MESSAGE);
@@ -94,6 +106,18 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
     return this;
   }
 
+  /**
+   * Verifies that the month of the actual {@code DateTime} is equal to the given month
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasDayOfMonth(1);</code></pre>
+   *
+   * @param other the given month.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
+   * @throws AssertionError if the month of the actual {@code DateTime} is not equal to the given month.
+   */
   public DateTimeAssert hasDayOfMonth(Integer other){
     isNotNull();
     assertParameterIsNotNull(other, NULL_DAY_OF_MONTH_PARAMETER_MESSAGE);
@@ -101,6 +125,18 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
     return this;
   }
 
+  /**
+   * Verifies that the hour of the actual {@code DateTime} is equal to the given hour
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01T11:00:00&quot;)).hasHourOfDay(11);</code></pre>
+   *
+   * @param other the given hour.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
+   * @throws AssertionError if the hour of the actual {@code DateTime} is not equal to the given hour.
+   */
   public DateTimeAssert hasHourOfDay(Integer other){
     isNotNull();
     assertParameterIsNotNull(other, NULL_HOUR_OF_DAY_PARAMETER_MESSAGE);
@@ -108,6 +144,18 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
     return this;
   }
 
+  /**
+   * Verifies that the minute of the actual {@code DateTime} is equal to the given minute
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01T11:09:00&quot;)).hasMinuteOfHour(9);</code></pre>
+   *
+   * @param other the given minute.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
+   * @throws AssertionError if the minute of the actual {@code DateTime} is not equal to the given minute.
+   */
   public DateTimeAssert hasMinuteOfHour(Integer other){
     isNotNull();
     assertParameterIsNotNull(other, NULL_MINUTE_OF_HOUR_PARAMETER_MESSAGE);
@@ -115,6 +163,18 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
     return this;
   }
 
+  /**
+   * Verifies that the seconds of the actual {@code DateTime} is equal to the given seconds
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01T11:09:39&quot;)).hasSecondOfMinute(39);</code></pre>
+   *
+   * @param other the given seconds.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
+   * @throws AssertionError if the seconds of the actual {@code DateTime} is not equal to the given seconds.
+   */
   public DateTimeAssert hasSecondOfMinute(Integer other){
     isNotNull();
     assertParameterIsNotNull(other, NULL_SECOND_OF_MINUTE_PARAMETER_MESSAGE);
@@ -122,6 +182,18 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
     return this;
   }
 
+  /**
+   * Verifies that the milliseconds of the actual {@code DateTime} is equal to the given milliseconds
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01T11:09:39.145&quot;)).hasMillisOfSecond(145);</code></pre>
+   *
+   * @param other the given milliseconds.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
+   * @throws AssertionError if the milliseconds of the actual {@code DateTime} is not equal to the given milliseconds.
+   */
   public DateTimeAssert hasMillisOfSecond(Integer other){
     isNotNull();
     assertParameterIsNotNull(other, NULL_MILLIS_OF_SECOND_PARAMETER_MESSAGE);

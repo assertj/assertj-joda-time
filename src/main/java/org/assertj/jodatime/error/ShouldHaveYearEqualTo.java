@@ -16,8 +16,21 @@ import org.assertj.core.error.BasicErrorMessageFactory;
 import org.assertj.core.error.ErrorMessageFactory;
 import org.joda.time.DateTime;
 
+/**
+ * Creates an error message indicating that an assertion that verifies a {@link DateTime} has a year
+ * equal to a given one failed.
+ *
+ * @author John Killmer
+ */
 public class ShouldHaveYearEqualTo extends BasicErrorMessageFactory {
 
+    /**
+     * Creates a new </code>{@link ShouldHaveYearEqualTo }</code>.
+     *
+     * @param actual the actual value in the failed assertion.
+     * @param other the value used in the failed assertion to compare the actual value to.
+     * @return the created {@code ErrorMessageFactory}.
+     */
     public static ErrorMessageFactory shouldHaveYearEqualTo(DateTime actual, Object other) {
         return new ShouldHaveYearEqualTo(actual, other);
     }

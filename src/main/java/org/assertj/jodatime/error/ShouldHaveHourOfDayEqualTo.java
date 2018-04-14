@@ -17,7 +17,8 @@ import org.assertj.core.error.ErrorMessageFactory;
 import org.joda.time.DateTime;
 
 /**
- * Creates an error message indicating that an assertion that verifies that a {@link DateTime} have hours equal to failed
+ * Creates an error message indicating that an assertion that verifies a {@link DateTime} has a hour of day
+ * equal to a given one failed.
  *
  * @author John Killmer
  */

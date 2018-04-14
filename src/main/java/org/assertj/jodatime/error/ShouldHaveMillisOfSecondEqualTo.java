@@ -35,7 +35,7 @@ public class ShouldHaveMillisOfSecondEqualTo extends BasicErrorMessageFactory {
     }
 
     private ShouldHaveMillisOfSecondEqualTo(DateTime actual, Object other) {
-        super("%nExpecting:%n  <%s>%nto have the millis of second equal to:%n  <%s>%nbut was:%n  <%s>", actual, actual.getMillisOfSecond(),
-                other);
+        super("%nExpecting:%n  <%s>%nto have the millis of second equal to:%n  <%s>%nbut was:%n  <%s>", actual, other,
+                actual.getMillisOfSecond());
     }
 }

@@ -19,6 +19,7 @@ import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
 public class DateTimeAssert_shouldHaveDayOfMonthEqualTo_Test extends DateTimeAssertBaseTest {
+
     @Test
     public void should_pass_if_day_of_month_is_equal(){
         DateTime dateTime = new DateTime(2018,4,6,10,27,33);
@@ -26,17 +27,9 @@ public class DateTimeAssert_shouldHaveDayOfMonthEqualTo_Test extends DateTimeAss
     }
 
     @Test
-    public void test_should_fail_if_day_of_month_is_null(){
-        expectException(IllegalArgumentException.class,
-                "The day of month to compare actual with should not be null");
-        DateTime dateTime = new DateTime(2018,4,6,10,27,33);
-        assertThat(dateTime).hasDayOfMonth(null);
-    }
-
-    @Test
-    public void test_should_fail_if_actual_isnull(){
+    public void test_should_fail_if_actual_is_null(){
         expectException(AssertionError.class, actualIsNull());
         DateTime actualDateTime = null;
-        assertThat(actualDateTime).hasDayOfMonth(2);
+        assertThat(actualDateTime).hasDayOfMonth(6);
     }
 }

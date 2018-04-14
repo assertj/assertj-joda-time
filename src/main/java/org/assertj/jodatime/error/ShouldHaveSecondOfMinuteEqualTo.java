@@ -31,12 +31,12 @@ public class ShouldHaveSecondOfMinuteEqualTo extends BasicErrorMessageFactory {
      * @param other the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveSecondOfMinuteEqualTo(DateTime actual, Object other) {
+    public static ErrorMessageFactory shouldHaveSecondOfMinuteEqualTo(DateTime actual, int other) {
         return new ShouldHaveSecondOfMinuteEqualTo(actual, other);
     }
 
-    private ShouldHaveSecondOfMinuteEqualTo(DateTime actual, Object other) {
-        super("%nExpecting:%n  <%s>%nto have the second of minute equal to:%n  <%s>%nbut was:%n  <%s>", actual, actual.getSecondOfMinute(),
-                other);
+    private ShouldHaveSecondOfMinuteEqualTo(DateTime actual, int other) {
+        super("%nExpecting:%n  <%s>%nto have the second of minute equal to:%n  <%s>%nbut was:%n  <%s>", actual, other,
+                actual.getSecondOfMinute());
     }
 }

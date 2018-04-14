@@ -31,13 +31,13 @@ public class ShouldHaveHourOfDayEqualTo extends BasicErrorMessageFactory {
      * @param other the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveHoursEqualTo(DateTime actual, Object other) {
+    public static ErrorMessageFactory shouldHaveHoursEqualTo(DateTime actual, int other) {
         return new ShouldHaveHourOfDayEqualTo(actual, other);
     }
 
-    private ShouldHaveHourOfDayEqualTo(DateTime actual, Object other) {
-        super("%nExpecting:%n  <%s>%nto have the hour of day equal to:%n  <%s>%nbut was:%n  <%s>", actual, actual.getHourOfDay(),
-                other);
+    private ShouldHaveHourOfDayEqualTo(DateTime actual, int other) {
+        super("%nExpecting:%n  <%s>%nto have the hour of day equal to:%n  <%s>%nbut was:%n  <%s>", actual, other,
+                actual.getHourOfDay());
     }
 
 }

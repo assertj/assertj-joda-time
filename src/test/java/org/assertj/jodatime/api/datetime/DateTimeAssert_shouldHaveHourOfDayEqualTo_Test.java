@@ -23,16 +23,8 @@ public class DateTimeAssert_shouldHaveHourOfDayEqualTo_Test extends DateTimeAsse
 
     @Test
     public void should_pass_if_hours_of_day_are_equal(){
-        DateTime dateTime = new DateTime(2018,4,6,10,27,33);
-        assertThat(dateTime).hasHourOfDay(10);
-    }
-
-    @Test
-    public void test_should_fail_if_hoursOfDay_is_null(){
-        expectException(IllegalArgumentException.class,
-                "The hour of day to compare actual with should not be null");
-        DateTime dateTime = new DateTime(2018,4,6,10,27,33);
-        assertThat(dateTime).hasHourOfDay(null);
+        DateTime dateTime = new DateTime(2018,4,6,11,27,33);
+        assertThat(dateTime).hasHourOfDay(11);
     }
 
     @Test

@@ -27,15 +27,7 @@ public class DateTimeAssert_shouldHaveMinuteOfHourEqualTo_Test extends DateTimeA
     }
 
     @Test
-    public void test_should_fail_if_minute_of_hour_is_null(){
-        expectException(IllegalArgumentException.class,
-                "The minute of hour to compare actual with should not be null");
-        DateTime dateTime = new DateTime(2018,4,6,10,27,33);
-        assertThat(dateTime).hasMinuteOfHour(null);
-    }
-
-    @Test
-    public void test_should_fail_if_actual_isnull(){
+    public void test_should_fail_if_actual_is_null(){
         expectException(AssertionError.class, actualIsNull());
         DateTime actualDateTime = null;
         assertThat(actualDateTime).hasDayOfMonth(2);

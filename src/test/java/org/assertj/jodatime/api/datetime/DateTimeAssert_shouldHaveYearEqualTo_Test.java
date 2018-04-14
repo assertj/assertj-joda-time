@@ -28,18 +28,9 @@ public class DateTimeAssert_shouldHaveYearEqualTo_Test extends DateTimeAssertBas
     }
 
     @Test
-    public void test_should_fail_if_year_is_null(){
-        expectException(IllegalArgumentException.class,
-                "The year to compare actual with should not be null");
-        DateTime dateTime = new DateTime(2018,4,6,10,27,33);
-        assertThat(dateTime).hasYear(null);
-    }
-
-    @Test
     public void test_should_fail_if_actual_is_null(){
         expectException(AssertionError.class, actualIsNull());
         DateTime actualDateTime = null;
         assertThat(actualDateTime).hasYear(2018);
     }
-
 }

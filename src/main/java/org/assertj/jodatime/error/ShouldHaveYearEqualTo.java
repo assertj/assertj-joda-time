@@ -31,12 +31,12 @@ public class ShouldHaveYearEqualTo extends BasicErrorMessageFactory {
      * @param other the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveYearEqualTo(DateTime actual, Object other) {
+    public static ErrorMessageFactory shouldHaveYearEqualTo(DateTime actual, int other) {
         return new ShouldHaveYearEqualTo(actual, other);
     }
 
-    private ShouldHaveYearEqualTo(DateTime actual, Object other) {
-        super("%nExpecting:%n  <%s>%nto have they year equal to:%n  <%s>%nbut was:%n  <%s>", actual, actual.getYear(),
-                other);
+    private ShouldHaveYearEqualTo(DateTime actual, int other) {
+        super("%nExpecting:%n  <%s>%nto have the year equal to:%n  <%s>%nbut was:%n  <%s>", actual, other,
+                actual.getYear());
     }
 }

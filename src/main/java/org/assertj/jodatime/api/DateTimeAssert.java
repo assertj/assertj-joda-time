@@ -44,15 +44,6 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
 
   public static final String NULL_DATE_TIME_PARAMETER_MESSAGE = "The DateTime to compare actual with should not be null";
 
-  public static final String NULL_YEAR_PARAMETER_MESSAGE = "The year to compare actual with should not be null";
-  public static final String NULL_MONTH_PARAMETER_MESSAGE = "The month to compare actual with should not be null";
-  public static final String NULL_DAY_OF_MONTH_PARAMETER_MESSAGE = "The day of month to compare actual with should not be null";
-  public static final String NULL_HOUR_OF_DAY_PARAMETER_MESSAGE = "The hour of day to compare actual with should not be null";
-  public static final String NULL_MINUTE_OF_HOUR_PARAMETER_MESSAGE = "The minute of hour to compare actual with should not be null";
-  public static final String NULL_SECOND_OF_MINUTE_PARAMETER_MESSAGE = "The second of minute to compare actual with should not be null";
-  public static final String NULL_MILLIS_OF_SECOND_PARAMETER_MESSAGE = "The millis of second to compare actual with should not be null";
-
-
   /**
    * Creates a new <code>{@link org.assertj.jodatime.api.DateTimeAssert}</code>.
    * 
@@ -77,12 +68,10 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @param other the given year.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the year of the actual {@code DateTime} is not equal to the given year.
    */
-  public DateTimeAssert hasYear(Integer other){
+  public DateTimeAssert hasYear(int other){
     isNotNull();
-    assertParameterIsNotNull(other, NULL_YEAR_PARAMETER_MESSAGE);
     if (actual.getYear() != other) throw Failures.instance().failure(info, shouldHaveYearEqualTo(actual, other));
     return this;
   }
@@ -96,12 +85,10 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @param other the given month.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the month of the actual {@code DateTime} is not equal to the given month.
    */
-  public DateTimeAssert hasMonthOfYear(Integer other){
+  public DateTimeAssert hasMonthOfYear(int other){
     isNotNull();
-    assertParameterIsNotNull(other, NULL_MONTH_PARAMETER_MESSAGE);
     if (actual.getMonthOfYear() != other) throw Failures.instance().failure(info, shouldHaveMonthOfYearEqualTo(actual, other));
     return this;
   }
@@ -115,12 +102,10 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @param other the given month.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the month of the actual {@code DateTime} is not equal to the given month.
    */
-  public DateTimeAssert hasDayOfMonth(Integer other){
+  public DateTimeAssert hasDayOfMonth(int other){
     isNotNull();
-    assertParameterIsNotNull(other, NULL_DAY_OF_MONTH_PARAMETER_MESSAGE);
     if (actual.getDayOfMonth() != other) throw Failures.instance().failure(info, shouldHaveDayOfMonthEqualTo(actual, other));
     return this;
   }
@@ -134,12 +119,10 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @param other the given hour.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the hour of the actual {@code DateTime} is not equal to the given hour.
    */
-  public DateTimeAssert hasHourOfDay(Integer other){
+  public DateTimeAssert hasHourOfDay(int other){
     isNotNull();
-    assertParameterIsNotNull(other, NULL_HOUR_OF_DAY_PARAMETER_MESSAGE);
     if (actual.getHourOfDay() != other) throw Failures.instance().failure(info, shouldHaveHoursEqualTo(actual, other));
     return this;
   }
@@ -153,12 +136,10 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @param other the given minute.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the minute of the actual {@code DateTime} is not equal to the given minute.
    */
-  public DateTimeAssert hasMinuteOfHour(Integer other){
+  public DateTimeAssert hasMinuteOfHour(int other){
     isNotNull();
-    assertParameterIsNotNull(other, NULL_MINUTE_OF_HOUR_PARAMETER_MESSAGE);
     if (actual.getMinuteOfHour() != other) throw Failures.instance().failure(info, shouldHaveMinuteOfHourEqualTo(actual, other));
     return this;
   }
@@ -172,12 +153,10 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @param other the given seconds.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the seconds of the actual {@code DateTime} is not equal to the given seconds.
    */
-  public DateTimeAssert hasSecondOfMinute(Integer other){
+  public DateTimeAssert hasSecondOfMinute(int other){
     isNotNull();
-    assertParameterIsNotNull(other, NULL_SECOND_OF_MINUTE_PARAMETER_MESSAGE);
     if (actual.getSecondOfMinute() != other) throw Failures.instance().failure(info, shouldHaveSecondOfMinuteEqualTo(actual, other));
     return this;
   }
@@ -191,12 +170,10 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @param other the given milliseconds.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the milliseconds of the actual {@code DateTime} is not equal to the given milliseconds.
    */
-  public DateTimeAssert hasMillisOfSecond(Integer other){
+  public DateTimeAssert hasMillisOfSecond(int other){
     isNotNull();
-    assertParameterIsNotNull(other, NULL_MILLIS_OF_SECOND_PARAMETER_MESSAGE);
     if (actual.getMillisOfSecond() != other) throw Failures.instance().failure(info, shouldHaveMillisOfSecondEqualTo(actual, other));
     return this;
   }

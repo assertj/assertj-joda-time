@@ -28,15 +28,15 @@ public class ShouldHaveDayOfMonthEqualTo extends BasicErrorMessageFactory {
      * Creates a new </code>{@link ShouldHaveDayOfMonthEqualTo }</code>.
      *
      * @param actual the actual value in the failed assertion.
-     * @param other the value used in the failed assertion to compare the actual value to.
+     * @param expectedDayOfMonth the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveDayOfMonthEqualTo(DateTime actual, int other) {
-        return new ShouldHaveDayOfMonthEqualTo(actual, other);
+    public static ErrorMessageFactory shouldHaveDayOfMonthEqualTo(DateTime actual, int expectedDayOfMonth) {
+        return new ShouldHaveDayOfMonthEqualTo(actual, expectedDayOfMonth);
     }
 
-    private ShouldHaveDayOfMonthEqualTo(DateTime actual, int other) {
-        super("%nExpecting:%n  <%s>%nto have the day of month equal to:%n  <%s>%nbut was:%n  <%s>", actual, other,
+    private ShouldHaveDayOfMonthEqualTo(DateTime actual, int expectedDayOfMonth) {
+        super("%nExpecting:%n  <%s>%nto have the day of month equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedDayOfMonth,
                 actual.getDayOfMonth());
     }
 }

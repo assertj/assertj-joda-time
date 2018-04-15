@@ -65,14 +65,14 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasYear(1);</code></pre>
    *
-   * @param other the given year.
+   * @param expectedYear the given year.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
    * @throws AssertionError if the year of the actual {@code DateTime} is not equal to the given year.
    */
-  public DateTimeAssert hasYear(int other){
+  public DateTimeAssert hasYear(int expectedYear){
     isNotNull();
-    if (actual.getYear() != other) throw Failures.instance().failure(info, shouldHaveYearEqualTo(actual, other));
+    if (actual.getYear() != expectedYear) throw Failures.instance().failure(info, shouldHaveYearEqualTo(actual, expectedYear));
     return this;
   }
 
@@ -82,14 +82,14 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasMonthOfYear(1);</code></pre>
    *
-   * @param other the given month.
+   * @param expectedMonthOfYear the given month.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
    * @throws AssertionError if the month of the actual {@code DateTime} is not equal to the given month.
    */
-  public DateTimeAssert hasMonthOfYear(int other){
+  public DateTimeAssert hasMonthOfYear(int expectedMonthOfYear){
     isNotNull();
-    if (actual.getMonthOfYear() != other) throw Failures.instance().failure(info, shouldHaveMonthOfYearEqualTo(actual, other));
+    if (actual.getMonthOfYear() != expectedMonthOfYear) throw Failures.instance().failure(info, shouldHaveMonthOfYearEqualTo(actual, expectedMonthOfYear));
     return this;
   }
 
@@ -99,14 +99,14 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasDayOfMonth(1);</code></pre>
    *
-   * @param other the given month.
+   * @param expectedDayOfMonth the given month.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
    * @throws AssertionError if the month of the actual {@code DateTime} is not equal to the given month.
    */
-  public DateTimeAssert hasDayOfMonth(int other){
+  public DateTimeAssert hasDayOfMonth(int expectedDayOfMonth){
     isNotNull();
-    if (actual.getDayOfMonth() != other) throw Failures.instance().failure(info, shouldHaveDayOfMonthEqualTo(actual, other));
+    if (actual.getDayOfMonth() != expectedDayOfMonth) throw Failures.instance().failure(info, shouldHaveDayOfMonthEqualTo(actual, expectedDayOfMonth));
     return this;
   }
 
@@ -116,14 +116,14 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01T11:00:00&quot;)).hasHourOfDay(11);</code></pre>
    *
-   * @param other the given hour.
+   * @param expectedHourOfDay the given hour.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
    * @throws AssertionError if the hour of the actual {@code DateTime} is not equal to the given hour.
    */
-  public DateTimeAssert hasHourOfDay(int other){
+  public DateTimeAssert hasHourOfDay(int expectedHourOfDay){
     isNotNull();
-    if (actual.getHourOfDay() != other) throw Failures.instance().failure(info, shouldHaveHoursEqualTo(actual, other));
+    if (actual.getHourOfDay() != expectedHourOfDay) throw Failures.instance().failure(info, shouldHaveHoursEqualTo(actual, expectedHourOfDay));
     return this;
   }
 
@@ -133,14 +133,14 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01T11:09:00&quot;)).hasMinuteOfHour(9);</code></pre>
    *
-   * @param other the given minute.
+   * @param expectedMinuteOfHour the given minute.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
    * @throws AssertionError if the minute of the actual {@code DateTime} is not equal to the given minute.
    */
-  public DateTimeAssert hasMinuteOfHour(int other){
+  public DateTimeAssert hasMinuteOfHour(int expectedMinuteOfHour){
     isNotNull();
-    if (actual.getMinuteOfHour() != other) throw Failures.instance().failure(info, shouldHaveMinuteOfHourEqualTo(actual, other));
+    if (actual.getMinuteOfHour() != expectedMinuteOfHour) throw Failures.instance().failure(info, shouldHaveMinuteOfHourEqualTo(actual, expectedMinuteOfHour));
     return this;
   }
 
@@ -150,14 +150,15 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01T11:09:39&quot;)).hasSecondOfMinute(39);</code></pre>
    *
-   * @param other the given seconds.
+   * @param expectedSecondOfMinute the given seconds.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the seconds of the actual {@code DateTime} is not equal to the given seconds.
    */
-  public DateTimeAssert hasSecondOfMinute(int other){
+  public DateTimeAssert hasSecondOfMinute(int expectedSecondOfMinute){
     isNotNull();
-    if (actual.getSecondOfMinute() != other) throw Failures.instance().failure(info, shouldHaveSecondOfMinuteEqualTo(actual, other));
+    if (actual.getSecondOfMinute() != expectedSecondOfMinute) throw Failures.instance().failure(info, shouldHaveSecondOfMinuteEqualTo(actual, expectedSecondOfMinute));
     return this;
   }
 
@@ -167,14 +168,15 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01T11:09:39.145&quot;)).hasMillisOfSecond(145);</code></pre>
    *
-   * @param other the given milliseconds.
+   * @param expectedMillisOfSecond the given milliseconds.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the milliseconds of the actual {@code DateTime} is not equal to the given milliseconds.
    */
-  public DateTimeAssert hasMillisOfSecond(int other){
+  public DateTimeAssert hasMillisOfSecond(int expectedMillisOfSecond){
     isNotNull();
-    if (actual.getMillisOfSecond() != other) throw Failures.instance().failure(info, shouldHaveMillisOfSecondEqualTo(actual, other));
+    if (actual.getMillisOfSecond() != expectedMillisOfSecond) throw Failures.instance().failure(info, shouldHaveMillisOfSecondEqualTo(actual, expectedMillisOfSecond));
     return this;
   }
 
@@ -724,15 +726,6 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   private void checkIsNotNullAndNotEmpty(Object[] values) {
     if (values == null) throw new IllegalArgumentException("The given DateTime array should not be null");
     if (values.length == 0) throw new IllegalArgumentException("The given DateTime array should not be empty");
-  }
-
-
-  /**
-   *
-   * @param other
-   */
-  private static void assertParameterIsNotNull(Integer integer, String exceptionMessage) {
-    if (integer == null) throw new IllegalArgumentException(exceptionMessage);
   }
 
   /**

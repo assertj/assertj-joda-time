@@ -28,15 +28,15 @@ public class ShouldHaveMonthOfYearEqualTo extends BasicErrorMessageFactory {
      * Creates a new </code>{@link ShouldHaveMonthOfYearEqualTo }</code>.
      *
      * @param actual the actual value in the failed assertion.
-     * @param other the value used in the failed assertion to compare the actual value to.
+     * @param expectedMonthOfYear the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveMonthOfYearEqualTo(DateTime actual, int other) {
-        return new ShouldHaveMonthOfYearEqualTo(actual, other);
+    public static ErrorMessageFactory shouldHaveMonthOfYearEqualTo(DateTime actual, int expectedMonthOfYear) {
+        return new ShouldHaveMonthOfYearEqualTo(actual, expectedMonthOfYear);
     }
 
-    private ShouldHaveMonthOfYearEqualTo(DateTime actual, int other) {
-        super("%nExpecting:%n  <%s>%nto have the month of year equal to:%n  <%s>%nbut was:%n  <%s>", actual, other,
+    private ShouldHaveMonthOfYearEqualTo(DateTime actual, int expectedMonthOfYear) {
+        super("%nExpecting:%n  <%s>%nto have the month of year equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedMonthOfYear,
                 actual.getMonthOfYear());
     }
 }

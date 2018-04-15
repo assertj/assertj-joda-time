@@ -27,15 +27,15 @@ public class ShouldHaveMillisOfSecondEqualTo extends BasicErrorMessageFactory {
      * Creates a new </code>{@link ShouldHaveMillisOfSecondEqualTo }</code>.
      *
      * @param actual the actual value in the failed assertion.
-     * @param other the value used in the failed assertion to compare the actual value to.
+     * @param expectedMillisOfSecond the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveMillisOfSecondEqualTo(DateTime actual, Object other) {
-        return new ShouldHaveMillisOfSecondEqualTo(actual, other);
+    public static ErrorMessageFactory shouldHaveMillisOfSecondEqualTo(DateTime actual, int expectedMillisOfSecond) {
+        return new ShouldHaveMillisOfSecondEqualTo(actual, expectedMillisOfSecond);
     }
 
-    private ShouldHaveMillisOfSecondEqualTo(DateTime actual, Object other) {
-        super("%nExpecting:%n  <%s>%nto have the millis of second equal to:%n  <%s>%nbut was:%n  <%s>", actual, other,
+    private ShouldHaveMillisOfSecondEqualTo(DateTime actual, int expectedMillisOfSecond) {
+        super("%nExpecting:%n  <%s>%nto have the millis of second equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedMillisOfSecond,
                 actual.getMillisOfSecond());
     }
 }

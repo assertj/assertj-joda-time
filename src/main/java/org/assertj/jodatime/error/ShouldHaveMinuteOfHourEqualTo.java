@@ -27,15 +27,15 @@ public class ShouldHaveMinuteOfHourEqualTo extends BasicErrorMessageFactory {
      * Creates a new </code>{@link ShouldHaveMinuteOfHourEqualTo }</code>.
      *
      * @param actual the actual value in the failed assertion.
-     * @param other the value used in the failed assertion to compare the actual value to.
+     * @param expectedMinuteOfHour the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveMinuteOfHourEqualTo(DateTime actual, int other) {
-        return new ShouldHaveMinuteOfHourEqualTo(actual, other);
+    public static ErrorMessageFactory shouldHaveMinuteOfHourEqualTo(DateTime actual, int expectedMinuteOfHour) {
+        return new ShouldHaveMinuteOfHourEqualTo(actual, expectedMinuteOfHour);
     }
 
-    private ShouldHaveMinuteOfHourEqualTo(DateTime actual, int other) {
-        super("%nExpecting:%n  <%s>%nto have the minute of hour equal to:%n  <%s>%nbut was:%n  <%s>", actual, other,
+    private ShouldHaveMinuteOfHourEqualTo(DateTime actual, int expectedMinuteOfHour) {
+        super("%nExpecting:%n  <%s>%nto have the minute of hour equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedMinuteOfHour,
                 actual.getMinuteOfHour());
     }
 }

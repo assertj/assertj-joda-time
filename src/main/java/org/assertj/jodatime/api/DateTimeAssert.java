@@ -153,7 +153,6 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @param expectedSecondOfMinute the given seconds.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the seconds of the actual {@code DateTime} is not equal to the given seconds.
    */
   public DateTimeAssert hasSecondOfMinute(int expectedSecondOfMinute){
@@ -171,7 +170,6 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    * @param expectedMillisOfSecond the given milliseconds.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws IllegalArgumentException if other {@code DateTime} is {@code null}.
    * @throws AssertionError if the milliseconds of the actual {@code DateTime} is not equal to the given milliseconds.
    */
   public DateTimeAssert hasMillisOfSecond(int expectedMillisOfSecond){

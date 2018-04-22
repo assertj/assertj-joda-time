@@ -17,7 +17,7 @@ import org.assertj.core.error.ErrorMessageFactory;
 import org.joda.time.DateTime;
 
 /**
- * Creates an error message indicating that an assertion that verifies a {@link DateTime} has millis of second
+ * Creates an error message indicating that an assertion that verifies a {@link DateTime} or {@Link LocalDateTime} has millis of second
  * equal to a given one failed.
  *
  * @author John Killmer
@@ -26,16 +26,17 @@ public class ShouldHaveMillisOfSecondEqualTo extends BasicErrorMessageFactory {
     /**
      * Creates a new </code>{@link ShouldHaveMillisOfSecondEqualTo }</code>.
      *
-     * @param actual the actual value in the failed assertion.
+     * @param actual the actual date object in the failed assertion.
+     * @param actualMillisOfSecond the actual value of the specific date field under test.
      * @param expectedMillisOfSecond the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveMillisOfSecondEqualTo(DateTime actual, int expectedMillisOfSecond) {
-        return new ShouldHaveMillisOfSecondEqualTo(actual, expectedMillisOfSecond);
+    public static ErrorMessageFactory shouldHaveMillisOfSecondEqualTo(Object actual, int actualMillisOfSecond, int expectedMillisOfSecond) {
+        return new ShouldHaveMillisOfSecondEqualTo(actual, actualMillisOfSecond, expectedMillisOfSecond);
     }
 
-    private ShouldHaveMillisOfSecondEqualTo(DateTime actual, int expectedMillisOfSecond) {
+    private ShouldHaveMillisOfSecondEqualTo(Object actual, int actualMillisOfSecond, int expectedMillisOfSecond) {
         super("%nExpecting:%n  <%s>%nto have the millis of second equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedMillisOfSecond,
-                actual.getMillisOfSecond());
+               actualMillisOfSecond);
     }
 }

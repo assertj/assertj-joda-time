@@ -17,7 +17,7 @@ import org.assertj.core.error.ErrorMessageFactory;
 import org.joda.time.DateTime;
 
 /**
- * Creates an error message indicating that an assertion that verifies  a {@link DateTime} has a day of month
+ * Creates an error message indicating that an assertion that verifies  a {@link DateTime} or {@Link LocalDateTime} has a day of month
  * equal to a given one failed.
  *
  * @author John Killmer
@@ -31,12 +31,12 @@ public class ShouldHaveDayOfMonthEqualTo extends BasicErrorMessageFactory {
      * @param expectedDayOfMonth the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveDayOfMonthEqualTo(DateTime actual, int expectedDayOfMonth) {
-        return new ShouldHaveDayOfMonthEqualTo(actual, expectedDayOfMonth);
+    public static ErrorMessageFactory shouldHaveDayOfMonthEqualTo(Object actual, int actualDayOfMonth, int expectedDayOfMonth) {
+        return new ShouldHaveDayOfMonthEqualTo(actual, actualDayOfMonth, expectedDayOfMonth);
     }
 
-    private ShouldHaveDayOfMonthEqualTo(DateTime actual, int expectedDayOfMonth) {
+    private ShouldHaveDayOfMonthEqualTo(Object actual, int actualDayOfMonth, int expectedDayOfMonth) {
         super("%nExpecting:%n  <%s>%nto have the day of month equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedDayOfMonth,
-                actual.getDayOfMonth());
+                actualDayOfMonth);
     }
 }

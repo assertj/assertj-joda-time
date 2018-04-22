@@ -20,6 +20,13 @@ import static org.assertj.jodatime.error.ShouldBeEqualIgnoringHours.shouldBeEqua
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringMillis.shouldBeEqualIgnoringMillis;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringMinutes.shouldBeEqualIgnoringMinutes;
 import static org.assertj.jodatime.error.ShouldBeEqualIgnoringSeconds.shouldBeEqualIgnoringSeconds;
+import static org.assertj.jodatime.error.ShouldHaveDayOfMonthEqualTo.shouldHaveDayOfMonthEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveHourOfDayEqualTo.shouldHaveHoursEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveMillisOfSecondEqualTo.shouldHaveMillisOfSecondEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveMinuteOfHourEqualTo.shouldHaveMinuteOfHourEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveMonthOfYearEqualTo.shouldHaveMonthOfYearEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveSecondOfMinuteEqualTo.shouldHaveSecondOfMinuteEqualTo;
+import static org.assertj.jodatime.error.ShouldHaveYearEqualTo.shouldHaveYearEqualTo;
 
 import org.joda.time.LocalDateTime;
 
@@ -32,6 +39,7 @@ import org.assertj.core.internal.Objects;
  * 
  * @author Paweł Stawicki
  * @author Joel Costigliola
+ * @author John Killmer
  */
 public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, LocalDateTime> {
 
@@ -50,6 +58,126 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   // visible for test
   protected LocalDateTime getActual() {
     return actual;
+  }
+
+
+  /**
+   * Verifies that the year of the actual {@code LocalDateTime} is equal to the given year
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasYear(1);</code></pre>
+   *
+   * @param expectedYear the given year.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws AssertionError if the year of the actual {@code DateTime} is not equal to the given year.
+   */
+  public LocalDateTimeAssert hasYear(int expectedYear){
+    isNotNull();
+    if (actual.getYear() != expectedYear) throw Failures.instance().failure(info, shouldHaveYearEqualTo(actual, actual.getYear(), expectedYear));
+    return this;
+  }
+
+  /**
+   * Verifies that the month of the actual {@code LocalDateTime} is equal to the given month
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasMonthOfYear(1);</code></pre>
+   *
+   * @param expectedMonthOfYear the given month.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
+   * @throws AssertionError if the month of the actual {@code LocalDateTime} is not equal to the given month.
+   */
+  public LocalDateTimeAssert hasMonthOfYear(int expectedMonthOfYear){
+    isNotNull();
+    if (actual.getMonthOfYear() != expectedMonthOfYear) throw Failures.instance().failure(info, shouldHaveMonthOfYearEqualTo(actual, actual.getMonthOfYear(), expectedMonthOfYear));
+    return this;
+  }
+
+  /**
+   * Verifies that the month of the actual {@code LocalDateTime} is equal to the given month
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).hasDayOfMonth(1);</code></pre>
+   *
+   * @param expectedDayOfMonth the given month.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
+   * @throws AssertionError if the month of the actual {@code LocalDateTime} is not equal to the given month.
+   */
+  public LocalDateTimeAssert hasDayOfMonth(int expectedDayOfMonth){
+    isNotNull();
+    if (actual.getDayOfMonth() != expectedDayOfMonth) throw Failures.instance().failure(info, shouldHaveDayOfMonthEqualTo(actual, actual.getDayOfMonth(), expectedDayOfMonth));
+    return this;
+  }
+
+  /**
+   * Verifies that the hour of the actual {@code DateTime} is equal to the given hour
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new LocalDateTime(&quot;2000-01-01T11:00:00&quot;)).hasHourOfDay(11);</code></pre>
+   *
+   * @param expectedHourOfDay the given hour.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
+   * @throws AssertionError if the hour of the actual {@code LocalDateTime} is not equal to the given hour.
+   */
+  public LocalDateTimeAssert hasHourOfDay(int expectedHourOfDay){
+    isNotNull();
+    if (actual.getHourOfDay() != expectedHourOfDay) throw Failures.instance().failure(info, shouldHaveHoursEqualTo(actual, actual.getHourOfDay(), expectedHourOfDay));
+    return this;
+  }
+
+  /**
+   * Verifies that the minute of the actual {@code LocalDateTime} is equal to the given minute
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new LocalDateTime(&quot;2000-01-01T11:09:00&quot;)).hasMinuteOfHour(9);</code></pre>
+   *
+   * @param expectedMinuteOfHour the given minute.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
+   * @throws AssertionError if the minute of the actual {@code LocalDateTime} is not equal to the given minute.
+   */
+  public LocalDateTimeAssert hasMinuteOfHour(int expectedMinuteOfHour){
+    isNotNull();
+    if (actual.getMinuteOfHour() != expectedMinuteOfHour) throw Failures.instance().failure(info, shouldHaveMinuteOfHourEqualTo(actual, actual.getMinuteOfHour(), expectedMinuteOfHour));
+    return this;
+  }
+
+  /**
+   * Verifies that the seconds of the actual {@code LocalDateTime} is equal to the given seconds
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new LocalDateTime(&quot;2000-01-01T11:09:39&quot;)).hasSecondOfMinute(39);</code></pre>
+   *
+   * @param expectedSecondOfMinute the given seconds.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
+   * @throws AssertionError if the seconds of the actual {@code DateTime} is not equal to the given seconds.
+   */
+  public LocalDateTimeAssert hasSecondOfMinute(int expectedSecondOfMinute){
+    isNotNull();
+    if (actual.getSecondOfMinute() != expectedSecondOfMinute) throw Failures.instance().failure(info, shouldHaveSecondOfMinuteEqualTo(actual, actual.getSecondOfMinute(), expectedSecondOfMinute));
+    return this;
+  }
+
+  /**
+   * Verifies that the milliseconds of the actual {@code LocalDateTime} is equal to the given milliseconds
+   * <p>
+   * Example :
+   * <pre><code class='java'> assertThat(new LocalDateTime(&quot;2000-01-01T11:09:39.145&quot;)).hasMillisOfSecond(145);</code></pre>
+   *
+   * @param expectedMillisOfSecond the given milliseconds.
+   * @return this assertion object.
+   * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
+   * @throws AssertionError if the milliseconds of the actual {@code LocalDateTime} is not equal to the given milliseconds.
+   */
+  public LocalDateTimeAssert hasMillisOfSecond(int expectedMillisOfSecond){
+    isNotNull();
+    if (actual.getMillisOfSecond() != expectedMillisOfSecond) throw Failures.instance().failure(info, shouldHaveMillisOfSecondEqualTo(actual, actual.getMillisOfSecond(), expectedMillisOfSecond));
+    return this;
   }
 
   /**

@@ -72,7 +72,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert hasYear(int expectedYear){
     isNotNull();
-    if (actual.getYear() != expectedYear) throw Failures.instance().failure(info, shouldHaveYearEqualTo(actual, expectedYear));
+    if (actual.getYear() != expectedYear) throw Failures.instance().failure(info, shouldHaveYearEqualTo(actual, actual.getYear(), expectedYear));
     return this;
   }
 
@@ -89,7 +89,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert hasMonthOfYear(int expectedMonthOfYear){
     isNotNull();
-    if (actual.getMonthOfYear() != expectedMonthOfYear) throw Failures.instance().failure(info, shouldHaveMonthOfYearEqualTo(actual, expectedMonthOfYear));
+    if (actual.getMonthOfYear() != expectedMonthOfYear) throw Failures.instance().failure(info, shouldHaveMonthOfYearEqualTo(actual, actual.getMonthOfYear(), expectedMonthOfYear));
     return this;
   }
 
@@ -106,7 +106,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert hasDayOfMonth(int expectedDayOfMonth){
     isNotNull();
-    if (actual.getDayOfMonth() != expectedDayOfMonth) throw Failures.instance().failure(info, shouldHaveDayOfMonthEqualTo(actual, expectedDayOfMonth));
+    if (actual.getDayOfMonth() != expectedDayOfMonth) throw Failures.instance().failure(info, shouldHaveDayOfMonthEqualTo(actual, actual.getDayOfMonth(), expectedDayOfMonth));
     return this;
   }
 
@@ -123,7 +123,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert hasHourOfDay(int expectedHourOfDay){
     isNotNull();
-    if (actual.getHourOfDay() != expectedHourOfDay) throw Failures.instance().failure(info, shouldHaveHoursEqualTo(actual, expectedHourOfDay));
+    if (actual.getHourOfDay() != expectedHourOfDay) throw Failures.instance().failure(info, shouldHaveHoursEqualTo(actual, actual.getHourOfDay(), expectedHourOfDay));
     return this;
   }
 
@@ -140,7 +140,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert hasMinuteOfHour(int expectedMinuteOfHour){
     isNotNull();
-    if (actual.getMinuteOfHour() != expectedMinuteOfHour) throw Failures.instance().failure(info, shouldHaveMinuteOfHourEqualTo(actual, expectedMinuteOfHour));
+    if (actual.getMinuteOfHour() != expectedMinuteOfHour) throw Failures.instance().failure(info, shouldHaveMinuteOfHourEqualTo(actual, actual.getMinuteOfHour(), expectedMinuteOfHour));
     return this;
   }
 
@@ -157,7 +157,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert hasSecondOfMinute(int expectedSecondOfMinute){
     isNotNull();
-    if (actual.getSecondOfMinute() != expectedSecondOfMinute) throw Failures.instance().failure(info, shouldHaveSecondOfMinuteEqualTo(actual, expectedSecondOfMinute));
+    if (actual.getSecondOfMinute() != expectedSecondOfMinute) throw Failures.instance().failure(info, shouldHaveSecondOfMinuteEqualTo(actual, actual.getSecondOfMinute(), expectedSecondOfMinute));
     return this;
   }
 
@@ -174,7 +174,7 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
    */
   public DateTimeAssert hasMillisOfSecond(int expectedMillisOfSecond){
     isNotNull();
-    if (actual.getMillisOfSecond() != expectedMillisOfSecond) throw Failures.instance().failure(info, shouldHaveMillisOfSecondEqualTo(actual, expectedMillisOfSecond));
+    if (actual.getMillisOfSecond() != expectedMillisOfSecond) throw Failures.instance().failure(info, shouldHaveMillisOfSecondEqualTo(actual, actual.getMillisOfSecond(), expectedMillisOfSecond));
     return this;
   }
 

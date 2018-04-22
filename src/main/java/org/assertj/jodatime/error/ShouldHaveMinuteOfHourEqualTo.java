@@ -17,7 +17,7 @@ import org.assertj.core.error.ErrorMessageFactory;
 import org.joda.time.DateTime;
 
 /**
- * Creates an error message indicating that an assertion that verifies a {@link DateTime} has a minute of hour
+ * Creates an error message indicating that an assertion that verifies a {@link DateTime} or {@Link LocalDateTime} has a minute of hour
  * equal to a given one failed.
  *
  * @author John Killmer
@@ -26,16 +26,17 @@ public class ShouldHaveMinuteOfHourEqualTo extends BasicErrorMessageFactory {
     /**
      * Creates a new </code>{@link ShouldHaveMinuteOfHourEqualTo }</code>.
      *
-     * @param actual the actual value in the failed assertion.
+     * @param actual the actual date object in the failed assertion.
+     * @param actualMinuteOfHour the actual value of the specific date field under test.
      * @param expectedMinuteOfHour the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveMinuteOfHourEqualTo(DateTime actual, int expectedMinuteOfHour) {
-        return new ShouldHaveMinuteOfHourEqualTo(actual, expectedMinuteOfHour);
+    public static ErrorMessageFactory shouldHaveMinuteOfHourEqualTo(Object actual, int actualMinuteOfHour, int expectedMinuteOfHour) {
+        return new ShouldHaveMinuteOfHourEqualTo(actual, actualMinuteOfHour, expectedMinuteOfHour);
     }
 
-    private ShouldHaveMinuteOfHourEqualTo(DateTime actual, int expectedMinuteOfHour) {
+    private ShouldHaveMinuteOfHourEqualTo(Object actual, int actualMinuteOfHour, int expectedMinuteOfHour) {
         super("%nExpecting:%n  <%s>%nto have the minute of hour equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedMinuteOfHour,
-                actual.getMinuteOfHour());
+                actualMinuteOfHour);
     }
 }

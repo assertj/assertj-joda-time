@@ -17,7 +17,7 @@ import org.assertj.core.error.ErrorMessageFactory;
 import org.joda.time.DateTime;
 
 /**
- * Creates an error message indicating that an assertion that verifies a {@link DateTime} has a year
+ * Creates an error message indicating that an assertion that verifies a {@link DateTime} or {@Link LocalDateTime} has a year
  * equal to a given one failed.
  *
  * @author John Killmer
@@ -27,16 +27,17 @@ public class ShouldHaveYearEqualTo extends BasicErrorMessageFactory {
     /**
      * Creates a new </code>{@link ShouldHaveYearEqualTo }</code>.
      *
-     * @param actual the actual value in the failed assertion.
+     * @param actual the actual date object in the failed assertion.
+     * @param actualYear the actual value of the specific date field under test.
      * @param expectedYear the value used in the failed assertion to compare the actual value to.
      * @return the created {@code ErrorMessageFactory}.
      */
-    public static ErrorMessageFactory shouldHaveYearEqualTo(DateTime actual, int expectedYear) {
-        return new ShouldHaveYearEqualTo(actual, expectedYear);
+    public static ErrorMessageFactory shouldHaveYearEqualTo(Object actual, int actualYear, int expectedYear) {
+        return new ShouldHaveYearEqualTo(actual, actualYear, expectedYear);
     }
 
-    private ShouldHaveYearEqualTo(DateTime actual, int expectedYear) {
+    private ShouldHaveYearEqualTo(Object actual, int actualYear, int expectedYear) {
         super("%nExpecting:%n  <%s>%nto have the year equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedYear,
-                actual.getYear());
+                actualYear);
     }
 }

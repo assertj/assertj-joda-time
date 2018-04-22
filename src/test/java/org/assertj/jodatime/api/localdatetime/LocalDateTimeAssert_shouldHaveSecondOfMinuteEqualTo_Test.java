@@ -20,7 +20,7 @@ import org.junit.Test;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
-public class LocalDateTimeAssert_shouldHaveSecondOfMinuteEqualTo_Test extends DateTimeAssertBaseTest {
+public class LocalDateTimeAssert_shouldHaveSecondOfMinuteEqualTo_Test extends LocalDateTimeAssertBaseTest {
 
     @Test
     public void should_pass_if_second_of_minute_are_equal(){

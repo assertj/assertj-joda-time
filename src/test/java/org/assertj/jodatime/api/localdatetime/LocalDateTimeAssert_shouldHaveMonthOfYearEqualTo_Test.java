@@ -20,7 +20,7 @@ import org.junit.Test;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
-public class LocalDateTimeAssert_shouldHaveMonthOfYearEqualTo_Test extends DateTimeAssertBaseTest {
+public class LocalDateTimeAssert_shouldHaveMonthOfYearEqualTo_Test extends LocalDateTimeAssertBaseTest {
 
     @Test
     public void should_pass_if_month_of_year_are_equal(){

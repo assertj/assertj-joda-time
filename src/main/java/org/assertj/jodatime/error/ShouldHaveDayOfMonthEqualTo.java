@@ -28,7 +28,13 @@ public class ShouldHaveDayOfMonthEqualTo extends BasicErrorMessageFactory {
   }
 
   private ShouldHaveDayOfMonthEqualTo(Object actual, int actualDayOfMonth, int expectedDayOfMonth) {
-    super("%nExpecting:%n  <%s>%nto have the day of month equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedDayOfMonth,
-          actualDayOfMonth);
+    super("%n" +
+          "Expecting:%n" +
+          "  <%s>%n" +
+          "day of month to be:%n" +
+          "  <%s>%n" +
+          "but was:%n" +
+          "  <%s>",
+          actual, expectedDayOfMonth, actualDayOfMonth);
   }
 }

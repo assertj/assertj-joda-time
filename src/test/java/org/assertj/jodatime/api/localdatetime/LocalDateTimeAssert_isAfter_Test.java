@@ -25,7 +25,6 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
-
 /**
  * @author Paweł Stawicki
  * @author Joel Costigliola
@@ -72,13 +71,12 @@ public class LocalDateTimeAssert_isAfter_Test extends LocalDateTimeAssertBaseTes
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
+                    "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isAfter((String) null);
   }
 
-
   private static void verify_that_isAfter_assertion_fails_and_throws_AssertionError(LocalDateTime dateToCheck,
-      LocalDateTime reference) {
+                                                                                    LocalDateTime reference) {
     try {
       assertThat(dateToCheck).isAfter(reference);
     } catch (AssertionError e) {

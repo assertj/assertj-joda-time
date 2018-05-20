@@ -19,7 +19,6 @@ import org.assertj.jodatime.api.JodaTimeBaseTest;
 import org.joda.time.DateTime;
 import org.junit.experimental.theories.DataPoint;
 
-
 /**
  * Base test class for {@link DateTimeAssert} tests.
  * 

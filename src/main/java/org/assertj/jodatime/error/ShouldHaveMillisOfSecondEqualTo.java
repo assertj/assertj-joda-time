@@ -29,7 +29,13 @@ public class ShouldHaveMillisOfSecondEqualTo extends BasicErrorMessageFactory {
   }
 
   private ShouldHaveMillisOfSecondEqualTo(Object actual, int actualMillisOfSecond, int expectedMillisOfSecond) {
-    super("%nExpecting:%n  <%s>%nto have the millis of second equal to:%n  <%s>%nbut was:%n  <%s>", actual,
-          expectedMillisOfSecond, actualMillisOfSecond);
+    super("%n" +
+          "Expecting:%n" +
+          "  <%s>%n" +
+          "millis of second to be:%n" +
+          "  <%s>%n" +
+          "but was:%n" +
+          "  <%s>",
+          actual, expectedMillisOfSecond, actualMillisOfSecond);
   }
 }

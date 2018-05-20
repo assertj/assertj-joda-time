@@ -53,7 +53,7 @@ public class LocalDateTimeAssert_isEqualTo_Test extends LocalDateTimeAssertBaseT
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the LocalDateTime to compare actual with should not be null");
+                    "The String representing the LocalDateTime to compare actual with should not be null");
     assertThat(new LocalDateTime()).isEqualTo((String) null);
   }
 

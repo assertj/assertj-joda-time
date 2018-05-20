@@ -12,26 +12,43 @@
  */
 package org.assertj.jodatime.api.localdatetime;
 
-import org.assertj.jodatime.api.datetime.DateTimeAssertBaseTest;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
-import org.junit.Test;
-
+import static java.lang.String.format;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
+import org.joda.time.LocalDateTime;
+import org.junit.Test;
+
 public class LocalDateTimeAssert_shouldHaveMillisOfSecondEqualTo_Test extends LocalDateTimeAssertBaseTest {
 
-    @Test
-    public void should_pass_if_millis_of_second_are_equal(){
-        LocalDateTime dateTime = new LocalDateTime(2018,4,6,10,27,33,1);
-        assertThat(dateTime).hasMillisOfSecond(1);
-    }
+  @Test
+  public void should_pass_if_millis_of_second_are_equal() {
+    LocalDateTime localDateTime = new LocalDateTime(2018, 4, 6, 10, 27, 33, 1);
+    assertThat(localDateTime).hasMillisOfSecond(1);
+  }
 
-    @Test
-    public void test_should_fail_if_actual_is_null(){
-        expectException(AssertionError.class, actualIsNull());
-        LocalDateTime actualDateTime = null;
-        assertThat(actualDateTime).hasMillisOfSecond(2);
-    }
+  @Test
+  public void test_should_fail_if_actual_is_null() {
+    expectException(AssertionError.class, actualIsNull());
+    LocalDateTime localDateTime = null;
+    assertThat(localDateTime).hasMillisOfSecond(2);
+  }
+
+  @Test
+  public void should_fail_when_millis_of_seconds_dont_match() {
+    // GIVEN
+    LocalDateTime localDateTime = new LocalDateTime(2018, 4, 6, 10, 27, 33, 1);
+    // WHEN
+    Throwable error = catchThrowable(() -> assertThat(localDateTime).hasMillisOfSecond(55));
+    // THEN
+    assertThat(error).hasMessage(format("%nExpecting:%n" +
+                                        "  <2018-04-06T10:27:33.001>%n" +
+                                        "millis of second to be:%n" +
+                                        "  <55>%n" +
+                                        "but was:%n" +
+                                        "  <1>"));
+  }
+
 }

@@ -12,24 +12,44 @@
  */
 package org.assertj.jodatime.api.datetime;
 
-import org.joda.time.DateTime;
-import org.junit.Test;
-
+import static java.lang.String.format;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.junit.Test;
+
 public class DateTimeAssert_shouldHaveDayOfMonthEqualTo_Test extends DateTimeAssertBaseTest {
 
-    @Test
-    public void should_pass_if_day_of_month_is_equal(){
-        DateTime dateTime = new DateTime(2018,4,6,10,27,33);
-        assertThat(dateTime).hasDayOfMonth(6);
-    }
+  @Test
+  public void should_pass_if_day_of_month_is_equal() {
+    DateTime dateTime = new DateTime(2018, 4, 6, 10, 27, 33, DateTimeZone.UTC);
+    assertThat(dateTime).hasDayOfMonth(6);
+  }
 
-    @Test
-    public void test_should_fail_if_actual_is_null(){
-        expectException(AssertionError.class, actualIsNull());
-        DateTime actualDateTime = null;
-        assertThat(actualDateTime).hasDayOfMonth(6);
-    }
+  @Test
+  public void test_should_fail_if_actual_is_null() {
+    expectException(AssertionError.class, actualIsNull());
+    DateTime dateTime = null;
+    assertThat(dateTime).hasDayOfMonth(6);
+  }
+
+  @Test
+  public void should_fail_when_day_of_month_dont_match() {
+    // GIVEN
+    DateTime dateTime = new DateTime(2018, 4, 6, 10, 27, 33, DateTimeZone.UTC);
+    // WHEN
+    Throwable error = catchThrowable(() -> assertThat(dateTime).hasDayOfMonth(5));
+    // THEN
+    assertThat(error).hasMessage(format("%nExpecting:%n" +
+                                        "  <2018-04-06T10:27:33.000Z>%n" +
+                                        "day of month to be:%n" +
+                                        "  <5>%n" +
+                                        "but was:%n" +
+                                        "  <6>"));
+  }
+
 }

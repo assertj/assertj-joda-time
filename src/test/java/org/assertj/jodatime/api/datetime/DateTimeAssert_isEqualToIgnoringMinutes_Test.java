@@ -23,7 +23,6 @@ import org.assertj.jodatime.api.JodaTimeBaseTest;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-
 public class DateTimeAssert_isEqualToIgnoringMinutes_Test extends JodaTimeBaseTest {
 
   private final DateTime refDatetime = new DateTime(2000, 1, 1, 23, 0, 0, 0, UTC);
@@ -39,8 +38,8 @@ public class DateTimeAssert_isEqualToIgnoringMinutes_Test extends JodaTimeBaseTe
       assertThat(refDatetime).isEqualToIgnoringMinutes(refDatetime.minusMinutes(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
-          .isEqualTo(format(
-              "%nExpecting:%n  <2000-01-01T23:00:00.000Z>%nto have same year, month, day and hour as:%n  <2000-01-01T22:59:00.000Z>%nbut had not."));
+                                .isEqualTo(format(
+                                                  "%nExpecting:%n  <2000-01-01T23:00:00.000Z>%nto have same year, month, day and hour as:%n  <2000-01-01T22:59:00.000Z>%nbut had not."));
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();
@@ -52,8 +51,8 @@ public class DateTimeAssert_isEqualToIgnoringMinutes_Test extends JodaTimeBaseTe
       assertThat(refDatetime).isEqualToIgnoringMinutes(refDatetime.minusMillis(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
-          .isEqualTo(format(
-              "%nExpecting:%n  <2000-01-01T23:00:00.000Z>%nto have same year, month, day and hour as:%n  <2000-01-01T22:59:59.999Z>%nbut had not."));
+                                .isEqualTo(format(
+                                                  "%nExpecting:%n  <2000-01-01T23:00:00.000Z>%nto have same year, month, day and hour as:%n  <2000-01-01T22:59:59.999Z>%nbut had not."));
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();

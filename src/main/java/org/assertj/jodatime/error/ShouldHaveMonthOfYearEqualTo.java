@@ -28,7 +28,13 @@ public class ShouldHaveMonthOfYearEqualTo extends BasicErrorMessageFactory {
   }
 
   private ShouldHaveMonthOfYearEqualTo(Object actual, int actualMonthOfYear, int expectedMonthOfYear) {
-    super("%nExpecting:%n  <%s>%nto have the month of year equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedMonthOfYear,
-          actualMonthOfYear);
+    super("%n" +
+          "Expecting:%n" +
+          "  <%s>%n" +
+          "month of year to be:%n" +
+          "  <%s>%n" +
+          "but was:%n" +
+          "  <%s>",
+          actual, expectedMonthOfYear, actualMonthOfYear);
   }
 }

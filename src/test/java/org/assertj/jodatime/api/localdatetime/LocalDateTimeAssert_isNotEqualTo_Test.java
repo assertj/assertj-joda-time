@@ -43,7 +43,7 @@ public class LocalDateTimeAssert_isNotEqualTo_Test extends LocalDateTimeAssertBa
   public void test_isNotEqualTo_assertion_error_message() {
     try {
       assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5))
-          .isNotEqualTo(new LocalDateTime(2000, 1, 5, 3, 0, 5).toString());
+                                                        .isNotEqualTo(new LocalDateTime(2000, 1, 5, 3, 0, 5).toString());
     } catch (AssertionError e) {
       assertThat(e).hasMessage(format("%nExpecting:%n <2000-01-05T03:00:05.000>%nnot to be equal to:%n <2000-01-05T03:00:05.000>%n"));
       return;
@@ -54,7 +54,7 @@ public class LocalDateTimeAssert_isNotEqualTo_Test extends LocalDateTimeAssertBa
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the LocalDateTime to compare actual with should not be null");
+                    "The String representing the LocalDateTime to compare actual with should not be null");
     assertThat(new LocalDateTime()).isNotEqualTo((String) null);
   }
 

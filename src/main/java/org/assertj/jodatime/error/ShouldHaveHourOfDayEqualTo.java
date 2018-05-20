@@ -28,8 +28,14 @@ public class ShouldHaveHourOfDayEqualTo extends BasicErrorMessageFactory {
   }
 
   private ShouldHaveHourOfDayEqualTo(Object actual, int actualHourOfDay, int expectedHourOfDay) {
-    super("%nExpecting:%n  <%s>%nto have the hour of day equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedHourOfDay,
-          actualHourOfDay);
+    super("%n" +
+          "Expecting:%n" +
+          "  <%s>%n" +
+          "hour of day to be:%n" +
+          "  <%s>%n" +
+          "but was:%n" +
+          "  <%s>",
+          actual, expectedHourOfDay, actualHourOfDay);
   }
 
 }

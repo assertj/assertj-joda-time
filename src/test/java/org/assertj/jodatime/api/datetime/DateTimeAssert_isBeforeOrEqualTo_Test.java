@@ -54,7 +54,7 @@ public class DateTimeAssert_isBeforeOrEqualTo_Test extends DateTimeAssertBaseTes
     DateTime cestDateTime2 = new DateTime(2013, 6, 10, 3, 0, cestTimeZone);
     // utcDateTime = cestDateTime1
     assertThat(utcDateTime).as("in UTC time zone").isBeforeOrEqualTo(cestDateTime1);
-    //  utcDateTime < cestDateTime2  
+    // utcDateTime < cestDateTime2
     assertThat(utcDateTime).as("in UTC time zone").isBeforeOrEqualTo(cestDateTime2);
   }
 
@@ -88,7 +88,7 @@ public class DateTimeAssert_isBeforeOrEqualTo_Test extends DateTimeAssertBaseTes
     DateTime actual = null;
     assertThat(actual).isBeforeOrEqualTo(new DateTime().toString());
   }
-  
+
   @Test
   public void should_fail_if_dateTime_parameter_is_null_but_actual_is_not() {
     expectException(IllegalArgumentException.class, "The DateTime to compare actual with should not be null");
@@ -98,13 +98,13 @@ public class DateTimeAssert_isBeforeOrEqualTo_Test extends DateTimeAssertBaseTes
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
+                    "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isBeforeOrEqualTo((String) null);
     assertThat((DateTime) null).isBeforeOrEqualTo((String) null);
   }
 
   private static void verify_that_isBeforeOrEqual_assertion_fails_and_throws_AssertionError(DateTime dateToCheck,
-      DateTime reference) {
+                                                                                            DateTime reference) {
     try {
       assertThat(dateToCheck).isBeforeOrEqualTo(reference);
     } catch (AssertionError e) {

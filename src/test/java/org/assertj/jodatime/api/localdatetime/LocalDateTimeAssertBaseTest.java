@@ -19,7 +19,6 @@ import org.assertj.jodatime.api.LocalDateTimeAssert;
 import org.joda.time.LocalDateTime;
 import org.junit.experimental.theories.DataPoint;
 
-
 /**
  * 
  * Base test class for {@link LocalDateTimeAssert} tests.

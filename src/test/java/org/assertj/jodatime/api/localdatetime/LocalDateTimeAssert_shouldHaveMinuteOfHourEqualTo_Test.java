@@ -12,26 +12,43 @@
  */
 package org.assertj.jodatime.api.localdatetime;
 
-import org.assertj.jodatime.api.datetime.DateTimeAssertBaseTest;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
-import org.junit.Test;
-
+import static java.lang.String.format;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
+import org.joda.time.LocalDateTime;
+import org.junit.Test;
+
 public class LocalDateTimeAssert_shouldHaveMinuteOfHourEqualTo_Test extends LocalDateTimeAssertBaseTest {
 
-    @Test
-    public void should_pass_if_minute_of_hour_are_equal(){
-        LocalDateTime dateTime = new LocalDateTime(2018,4,6,10,27,33);
-        assertThat(dateTime).hasMinuteOfHour(27);
-    }
+  @Test
+  public void should_pass_if_minute_of_hour_are_equal() {
+    LocalDateTime localDateTime = new LocalDateTime(2018, 4, 6, 10, 27, 33);
+    assertThat(localDateTime).hasMinuteOfHour(27);
+  }
 
-    @Test
-    public void test_should_fail_if_actual_is_null(){
-        expectException(AssertionError.class, actualIsNull());
-        LocalDateTime actualDateTime = null;
-        assertThat(actualDateTime).hasDayOfMonth(2);
-    }
+  @Test
+  public void test_should_fail_if_actual_is_null() {
+    expectException(AssertionError.class, actualIsNull());
+    LocalDateTime localDateTime = null;
+    assertThat(localDateTime).hasMinuteOfHour(2);
+  }
+
+  @Test
+  public void should_fail_when_minute_of_hours_dont_match() {
+    // GIVEN
+    LocalDateTime localDateTime = new LocalDateTime(2018, 4, 6, 10, 27, 33, 1);
+    // WHEN
+    Throwable error = catchThrowable(() -> assertThat(localDateTime).hasMinuteOfHour(33));
+    // THEN
+    assertThat(error).hasMessage(format("%nExpecting:%n" +
+                                        "  <2018-04-06T10:27:33.001>%n" +
+                                        "minute of hour to be:%n" +
+                                        "  <33>%n" +
+                                        "but was:%n" +
+                                        "  <27>"));
+  }
+
 }

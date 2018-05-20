@@ -29,7 +29,13 @@ public class ShouldHaveMinuteOfHourEqualTo extends BasicErrorMessageFactory {
   }
 
   private ShouldHaveMinuteOfHourEqualTo(Object actual, int actualMinuteOfHour, int expectedMinuteOfHour) {
-    super("%nExpecting:%n  <%s>%nto have the minute of hour equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedMinuteOfHour,
-          actualMinuteOfHour);
+    super("%n" +
+          "Expecting:%n" +
+          "  <%s>%n" +
+          "minute of hour to be:%n" +
+          "  <%s>%n" +
+          "but was:%n" +
+          "  <%s>",
+          actual, expectedMinuteOfHour, actualMinuteOfHour);
   }
 }

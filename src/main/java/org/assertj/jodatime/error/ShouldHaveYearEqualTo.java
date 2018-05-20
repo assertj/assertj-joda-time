@@ -28,6 +28,13 @@ public class ShouldHaveYearEqualTo extends BasicErrorMessageFactory {
   }
 
   private ShouldHaveYearEqualTo(Object actual, int actualYear, int expectedYear) {
-    super("%nExpecting:%n  <%s>%nto have the year equal to:%n  <%s>%nbut was:%n  <%s>", actual, expectedYear, actualYear);
+    super("%n" +
+          "Expecting:%n" +
+          "  <%s>%n" +
+          "year to be:%n" +
+          "  <%s>%n" +
+          "but was:%n" +
+          "  <%s>",
+          actual, expectedYear, actualYear);
   }
 }

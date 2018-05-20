@@ -25,7 +25,6 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
-
 public class DateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest {
 
   private final DateTime refDatetime = new DateTime(2000, 1, 2, 0, 0, 0, 0, UTC);
@@ -34,17 +33,17 @@ public class DateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest
   public void should_pass_if_actual_is_equal_to_other_ignoring_hours() {
     assertThat(refDatetime).isEqualToIgnoringHours(refDatetime.plusHours(1));
   }
-  
+
   @Test
   public void should_pass_if_actual_is_equal_to_other_ignoring_hours_in_different_timezone() {
     DateTime utcDateTime = new DateTime(2013, 6, 10, 0, 0, DateTimeZone.UTC);
     DateTimeZone cestTimeZone = DateTimeZone.forID("Europe/Berlin");
-    // utcDateTime = new DateTime(2013, 6, 10, 2, 0, cestTimeZone)  
+    // utcDateTime = new DateTime(2013, 6, 10, 2, 0, cestTimeZone)
     assertThat(utcDateTime).isEqualToIgnoringHours(new DateTime(2013, 6, 10, 5, 0, cestTimeZone));
-    // new DateTime(2013, 6, 11, 1, 0, cestTimeZone) =  DateTime(2013, 6, 10, 23, 0, DateTimeZone.UTC)
+    // new DateTime(2013, 6, 11, 1, 0, cestTimeZone) = DateTime(2013, 6, 10, 23, 0, DateTimeZone.UTC)
     assertThat(utcDateTime).isEqualToIgnoringHours(new DateTime(2013, 6, 11, 1, 0, cestTimeZone));
     try {
-      // DateTime(2013, 6, 10, 0, 0, cestTimeZone) =  DateTime(2013, 6, 9, 22, 0, DateTimeZone.UTC) 
+      // DateTime(2013, 6, 10, 0, 0, cestTimeZone) = DateTime(2013, 6, 9, 22, 0, DateTimeZone.UTC)
       assertThat(utcDateTime).isEqualToIgnoringHours(new DateTime(2013, 6, 10, 0, 0, cestTimeZone));
     } catch (AssertionError e) {
       return;
@@ -58,8 +57,8 @@ public class DateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest
       assertThat(refDatetime).isEqualToIgnoringHours(refDatetime.minusHours(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
-          .isEqualTo(format(
-              "%nExpecting:%n  <2000-01-02T00:00:00.000Z>%nto have same year, month and day as:%n  <2000-01-01T23:00:00.000Z>%nbut had not."));
+                                .isEqualTo(format(
+                                                  "%nExpecting:%n  <2000-01-02T00:00:00.000Z>%nto have same year, month and day as:%n  <2000-01-01T23:00:00.000Z>%nbut had not."));
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();
@@ -71,8 +70,8 @@ public class DateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest
       assertThat(refDatetime).isEqualToIgnoringHours(refDatetime.minusMillis(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
-          .isEqualTo(format(
-              "%nExpecting:%n  <2000-01-02T00:00:00.000Z>%nto have same year, month and day as:%n  <2000-01-01T23:59:59.999Z>%nbut had not."));
+                                .isEqualTo(format(
+                                                  "%nExpecting:%n  <2000-01-02T00:00:00.000Z>%nto have same year, month and day as:%n  <2000-01-01T23:59:59.999Z>%nbut had not."));
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();

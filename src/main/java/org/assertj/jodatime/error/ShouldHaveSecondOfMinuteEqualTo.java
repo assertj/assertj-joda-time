@@ -29,7 +29,13 @@ public class ShouldHaveSecondOfMinuteEqualTo extends BasicErrorMessageFactory {
   }
 
   private ShouldHaveSecondOfMinuteEqualTo(Object actual, int actualSecondOfMinute, int expectedSecondOfMinute) {
-    super("%nExpecting:%n  <%s>%nto have the second of minute equal to:%n  <%s>%nbut was:%n  <%s>", actual,
-          expectedSecondOfMinute, actualSecondOfMinute);
+    super("%n" +
+          "Expecting:%n" +
+          "  <%s>%n" +
+          "second of minute to be:%n" +
+          "  <%s>%n" +
+          "but was:%n" +
+          "  <%s>",
+          actual, expectedSecondOfMinute, actualSecondOfMinute);
   }
 }

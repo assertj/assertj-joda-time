@@ -34,7 +34,7 @@ public class LocalDateTimeAssert_isAfterOrEqualTo_Test extends LocalDateTimeAsse
 
   @Theory
   public void test_isAfterOrEqual_assertion(LocalDateTime referenceDate, LocalDateTime dateBefore,
-      LocalDateTime dateAfter) {
+                                            LocalDateTime dateAfter) {
     // GIVEN
     testAssumptions(referenceDate, dateBefore, dateAfter);
     // WHEN
@@ -71,12 +71,12 @@ public class LocalDateTimeAssert_isAfterOrEqualTo_Test extends LocalDateTimeAsse
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
+                    "The String representing the DateTime to compare actual with should not be null");
     assertThat(new DateTime()).isAfterOrEqualTo((String) null);
   }
 
   private static void verify_that_isAfterOrEqual_assertion_fails_and_throws_AssertionError(LocalDateTime dateToCheck,
-      LocalDateTime reference) {
+                                                                                           LocalDateTime reference) {
     try {
       assertThat(dateToCheck).isAfterOrEqualTo(reference);
     } catch (AssertionError e) {

@@ -13,6 +13,7 @@
 package org.assertj.jodatime.api;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
 /**
@@ -29,6 +30,10 @@ public class Assertions {
 
   public static LocalDateTimeAssert assertThat(LocalDateTime localDateTime) {
     return new LocalDateTimeAssert(LocalDateTimeAssert.class, localDateTime);
+  }
+
+  public static LocalDateAssert assertThat(LocalDate localDate) {
+    return new LocalDateAssert(LocalDateAssert.class, localDate);
   }
 
   /** Creates a new <code>{@link Assertions}</code>. */

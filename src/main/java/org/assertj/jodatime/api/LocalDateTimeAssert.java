@@ -67,7 +67,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    *
    * @param expectedYear the given year.
    * @return this assertion object.
-   * @throws AssertionError if the actual {@code DateTime} is {@code null}.
+   * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
    * @throws AssertionError if the year of the actual {@code DateTime} is not equal to the given year.
    */
   public LocalDateTimeAssert hasYear(int expectedYear) {
@@ -96,15 +96,15 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   }
 
   /**
-   * Verifies that the month of the actual {@code LocalDateTime} is equal to the given month
+   * Verifies that the day of month of the actual {@code LocalDateTime} is equal to the given day of month
    * <p>
    * Example :
    * <pre><code class='java'> assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).hasDayOfMonth(1);</code></pre>
    *
-   * @param expectedDayOfMonth the given month.
+   * @param expectedDayOfMonth the given day of month.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code LocalDateTime} is {@code null}.
-   * @throws AssertionError if the month of the actual {@code LocalDateTime} is not equal to the given month.
+   * @throws AssertionError if the day of month of the actual {@code LocalDateTime} is not equal to the given day of month.
    */
   public LocalDateTimeAssert hasDayOfMonth(int expectedDayOfMonth) {
     isNotNull();

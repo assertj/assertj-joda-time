@@ -19,13 +19,12 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 import static java.lang.String.format;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
 /**
  * Only test String based assertion (tests with {@link LocalDate} are already defined in assertj-core)
- * 
+ *
  * @author Evgenii Strepetov
  */
 @RunWith(Theories.class)
@@ -41,15 +40,11 @@ public class LocalDateAssert_isNotIn_Test extends LocalDateAssertBaseTest {
 
   @Test
   public void test_isNotIn_assertion_error_message() {
-    try {
+    assertThatThrownBy(() -> {
       LocalDate actualLocalDate = new LocalDate(2000, 1, 5);
       assertThat(actualLocalDate).isNotIn("2000-01-05", "2012-01-01");
-    } catch (AssertionError e) {
-      assertThat(e).hasMessage(format(
-          "%nExpecting:%n <2000-01-05>%nnot to be in:%n <[2000-01-05, 2012-01-01]>%n"));
-      return;
-    }
-    failBecauseExpectedAssertionErrorWasNotThrown();
+    }).isInstanceOf(AssertionError.class)
+      .hasMessage(format("%nExpecting:%n <2000-01-05>%nnot to be in:%n <[2000-01-05, 2012-01-01]>%n"));
   }
 
   @Test
@@ -61,17 +56,11 @@ public class LocalDateAssert_isNotIn_Test extends LocalDateAssertBaseTest {
   @Test
   public void should_fail_if_localDates_as_string_array_parameter_is_empty() {
     expectException(IllegalArgumentException.class, "The given LocalDate array should not be empty");
-    assertThat(new LocalDate()).isNotIn(new String[]{});
+    assertThat(new LocalDate()).isNotIn(new String[] {});
   }
 
   private static void verify_that_isNotIn_assertion_fails_and_throws_AssertionError(LocalDate reference) {
-    try {
-      assertThat(reference).isNotIn(reference.toString(), reference.plusDays(1).toString());
-    } catch (AssertionError e) {
-      // AssertionError was expected
-      return;
-    }
-    fail("Should have thrown AssertionError");
+    assertThatThrownBy(() -> assertThat(reference).isNotIn(reference.toString(), reference.plusDays(1).toString()))
+        .isInstanceOf(AssertionError.class);
   }
-
 }

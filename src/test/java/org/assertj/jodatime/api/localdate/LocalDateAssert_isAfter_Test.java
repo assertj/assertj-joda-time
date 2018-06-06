@@ -12,7 +12,6 @@
  */
 package org.assertj.jodatime.api.localdate;
 
-import org.assertj.core.api.Assertions;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
@@ -21,7 +20,6 @@ import org.junit.runner.RunWith;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
@@ -45,15 +43,12 @@ public class LocalDateAssert_isAfter_Test extends LocalDateAssertBaseTest {
 
   @Test
   public void test_isAfter_assertion_error_message() {
-    try {
+    assertThatThrownBy(() -> {
       LocalDate actualLocalDate = new LocalDate(2000, 1, 5);
       LocalDate localDateToCheck = new LocalDate(2012, 1, 1);
       assertThat(actualLocalDate).isAfter(localDateToCheck);
-    } catch (AssertionError e) {
-      Assertions.assertThat(e).hasMessage(format("%nExpecting:%n  <2000-01-05>%nto be strictly after:%n  <2012-01-01>%n"));
-      return;
-    }
-    failBecauseExpectedAssertionErrorWasNotThrown();
+    }).isInstanceOf(AssertionError.class)
+      .hasMessage(format("%nExpecting:%n  <2000-01-05>%nto be strictly after:%n  <2012-01-01>%n"));
   }
 
   @Test
@@ -82,17 +77,10 @@ public class LocalDateAssert_isAfter_Test extends LocalDateAssertBaseTest {
 
   private static void verify_that_isAfter_assertion_fails_and_throws_AssertionError(LocalDate dateToCheck,
                                                                                     LocalDate reference) {
-    try {
-      assertThat(dateToCheck).isAfter(reference);
-    } catch (AssertionError e) {
-      // AssertionError was expected, test same assertion with String based parameter
-      try {
-        assertThat(dateToCheck).isAfter(reference.toString());
-      } catch (AssertionError e2) {
-        // AssertionError was expected (again)
-        return;
-      }
-    }
-    fail("Should have thrown AssertionError");
+    assertThatThrownBy(() -> assertThat(dateToCheck).isAfter(reference))
+        .isInstanceOf(AssertionError.class);
+
+    assertThatThrownBy(() -> assertThat(dateToCheck).isAfter(reference.toString()))
+        .isInstanceOf(AssertionError.class);
   }
 }

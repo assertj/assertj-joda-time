@@ -19,13 +19,12 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 import static java.lang.String.format;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
 /**
  * Only test String based assertion (tests with {@link org.joda.time.LocalDate} are already defined in assertj-core)
- * 
+ *
  * @author Evgenii Strepetov
  */
 @RunWith(Theories.class)
@@ -41,13 +40,10 @@ public class LocalDateAssert_isNotEqualTo_Test extends LocalDateAssertBaseTest {
 
   @Test
   public void test_isNotEqualTo_assertion_error_message() {
-    try {
-      assertThat(new LocalDate(2000, 1, 5)).isNotEqualTo("2000-01-05");
-    } catch (AssertionError e) {
-      assertThat(e).hasMessage(format("%nExpecting:%n <2000-01-05>%nnot to be equal to:%n <2000-01-05>%n"));
-      return;
-    }
-    failBecauseExpectedAssertionErrorWasNotThrown();
+    assertThatThrownBy(
+        () -> assertThat(new LocalDate(2000, 1, 5)).isNotEqualTo("2000-01-05"))
+        .isInstanceOf(AssertionError.class)
+        .hasMessage(format("%nExpecting:%n <2000-01-05>%nnot to be equal to:%n <2000-01-05>%n"));
   }
 
   @Test
@@ -58,13 +54,8 @@ public class LocalDateAssert_isNotEqualTo_Test extends LocalDateAssertBaseTest {
   }
 
   private static void verify_that_isNotEqualTo_assertion_fails_and_throws_AssertionError(LocalDate reference) {
-    try {
-      assertThat(reference).isNotEqualTo(reference.toString());
-    } catch (AssertionError e) {
-      // AssertionError was expected
-      return;
-    }
-    fail("Should have thrown AssertionError");
+    assertThatThrownBy(() -> assertThat(reference).isNotEqualTo(reference.toString()))
+        .isInstanceOf(AssertionError.class);
   }
 
 }

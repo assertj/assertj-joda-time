@@ -19,9 +19,7 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 import static java.lang.String.format;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.jodatime.api.Assertions.assertThat;
 
@@ -45,15 +43,12 @@ public class LocalDateAssert_isBefore_Test extends LocalDateAssertBaseTest {
 
   @Test
   public void test_isBefore_assertion_error_message() {
-    try {
+    assertThatThrownBy(() -> {
       LocalDate actualDate = new LocalDate(2000, 1, 5);
       LocalDate dateToCheck = new LocalDate(1998, 1, 1);
       assertThat(actualDate).isBefore(dateToCheck);
-    } catch (AssertionError e) {
-      assertThat(e).hasMessage(format("%nExpecting:%n  <2000-01-05>%nto be strictly before:%n  <1998-01-01>%n"));
-      return;
-    }
-    failBecauseExpectedAssertionErrorWasNotThrown();
+    }).isInstanceOf(AssertionError.class)
+      .hasMessage(format("%nExpecting:%n  <2000-01-05>%nto be strictly before:%n  <1998-01-01>%n"));
   }
 
   @Test
@@ -62,9 +57,9 @@ public class LocalDateAssert_isBefore_Test extends LocalDateAssertBaseTest {
     LocalDate other = new LocalDate();
 
     assertThatThrownBy(() -> assertThat(nullLocalDate).isBefore(other)).as("other=%s", other)
-                                                                      .hasMessage(actualIsNull());
+                                                                       .hasMessage(actualIsNull());
     assertThatThrownBy(() -> assertThat(nullLocalDate).isBefore(other.toString())).as("other=%s", other)
-                                                                                 .hasMessage(actualIsNull());
+                                                                                  .hasMessage(actualIsNull());
   }
 
   @Test
@@ -82,18 +77,10 @@ public class LocalDateAssert_isBefore_Test extends LocalDateAssertBaseTest {
 
   private static void verify_that_isBefore_assertion_fails_and_throws_AssertionError(LocalDate dateToTest,
                                                                                      LocalDate reference) {
-    try {
-      assertThat(dateToTest).isBefore(reference);
-    } catch (AssertionError e) {
-      // AssertionError was expected, test same assertion with String based parameter
-      try {
-        assertThat(dateToTest).isBefore(reference.toString());
-      } catch (AssertionError e2) {
-        // AssertionError was expected (again)
-        return;
-      }
-    }
-    fail("Should have thrown AssertionError");
-  }
+    assertThatThrownBy(() -> assertThat(dateToTest).isBefore(reference))
+        .isInstanceOf(AssertionError.class);
 
+    assertThatThrownBy(() -> assertThat(dateToTest).isBefore(reference.toString()))
+        .isInstanceOf(AssertionError.class);
+  }
 }

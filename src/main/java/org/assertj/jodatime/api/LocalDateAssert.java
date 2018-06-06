@@ -90,7 +90,7 @@ public class LocalDateAssert extends AbstractAssert<LocalDateAssert, LocalDate> 
    * Verifies that the month of the actual {@code LocalDate} is equal to the given month
    * <p>
    * Example :
-   * <pre><code class='java'> assertThat(new LocalDate(2018,1,1)).hasDayOfMonth(1);</code></pre>
+   * <pre><code class='java'> assertThat(new LocalDate(2018,1,20)).hasDayOfMonth(20);</code></pre>
    *
    * @param expectedDayOfMonth the given day of month, from 1 to 31
    * @return this assertion object.
@@ -258,7 +258,7 @@ public class LocalDateAssert extends AbstractAssert<LocalDateAssert, LocalDate> 
 
   /**
    * Same assertion as {@link #isAfter(LocalDate)} but the {@link LocalDate} is built from given a String that
-   * must follow ISO8601 format (yyyy-MM-dd)to allow calling {@link LocalDate#LocalDate(Object) LocalDate(Object)}
+   * must follow ISO8601 format (yyyy-MM-dd) to allow calling {@link LocalDate#LocalDate(Object) LocalDate(Object)}
    * constructor.
    * <p>
    * Example :

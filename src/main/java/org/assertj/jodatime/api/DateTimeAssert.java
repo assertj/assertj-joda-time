@@ -94,15 +94,15 @@ public class DateTimeAssert extends AbstractAssert<DateTimeAssert, DateTime> {
   }
 
   /**
-   * Verifies that the month of the actual {@code DateTime} is equal to the given month
+   * Verifies that the day of month of the actual {@code DateTime} is equal to the given day of month
    * <p>
    * Example :
    * <pre><code class='java'> assertThat(new DateTime(&quot;2000-01-01&quot;)).hasDayOfMonth(1);</code></pre>
    *
-   * @param expectedDayOfMonth the given month.
+   * @param expectedDayOfMonth the given day of month.
    * @return this assertion object.
    * @throws AssertionError if the actual {@code DateTime} is {@code null}.
-   * @throws AssertionError if the month of the actual {@code DateTime} is not equal to the given month.
+   * @throws AssertionError if the day of month of the actual {@code DateTime} is not equal to the given day of month.
    */
   public DateTimeAssert hasDayOfMonth(int expectedDayOfMonth){
     isNotNull();
